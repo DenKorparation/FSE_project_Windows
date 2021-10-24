@@ -28,6 +28,6 @@ public class Main extends Application{
         stage.setTitle("GISMETEOSTATS");
         stage.setWidth(300);
         stage.setHeight(250);
-        stage.show();
+        stage.show(); //здесь была Саша
     }
 }
