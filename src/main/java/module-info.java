@@ -1,4 +1,4 @@
-module com.uni.fse_project_windows {
+module com.uni {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
