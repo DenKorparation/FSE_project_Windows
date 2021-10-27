@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class App  extends Application {
 
-    Database database;
+    private Database database;
 
     public static void launch(String[] args)
     {
