@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 
 public class App  extends Application {
 
-    private Database database;
-
     public static void launch(String[] args)
     {
         Application.launch(args);
