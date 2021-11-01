@@ -6,13 +6,14 @@ public class DataOfWeather {
     private float windSpeed;
     private float pressure;
     private float humidity;
-
-    public void setTemp(float temp) {
-        this.temp = temp;
-    }
+    private int time;
 
     public float getTemp() {
         return temp;
+    }
+
+    public void setTemp(float temp) {
+        this.temp = temp;
     }
 
     public float getFeelsLikeTemp() {
@@ -45,5 +46,13 @@ public class DataOfWeather {
 
     public void setHumidity(float humidity) {
         this.humidity = humidity;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }
