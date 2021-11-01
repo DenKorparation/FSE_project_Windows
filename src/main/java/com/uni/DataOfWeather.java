@@ -2,8 +2,8 @@ package com.uni;
 
 public class DataOfWeather {
     private float temp;
-    private float feels_like_temp;
-    private float wind_speed;
+    private float feelsLikeTemp;
+    private float windSpeed;
     private float pressure;
     private float humidity;
 
@@ -15,20 +15,20 @@ public class DataOfWeather {
         return temp;
     }
 
-    public float getFeels_like_temp() {
-        return feels_like_temp;
+    public float getFeelsLikeTemp() {
+        return feelsLikeTemp;
     }
 
-    public void setFeels_like_temp(float feels_like_temp) {
-        this.feels_like_temp = feels_like_temp;
+    public void setFeelsLikeTemp(float feelsLikeTemp) {
+        this.feelsLikeTemp = feelsLikeTemp;
     }
 
-    public float getWind_speed() {
-        return wind_speed;
+    public float getWindSpeed() {
+        return windSpeed;
     }
 
-    public void setWind_speed(float wind_speed) {
-        this.wind_speed = wind_speed;
+    public void setWindSpeed(float windSpeed) {
+        this.windSpeed = windSpeed;
     }
 
     public float getPressure() {
