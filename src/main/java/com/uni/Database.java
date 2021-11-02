@@ -15,8 +15,10 @@ public class Database {
     private DataOfWeather curWeatherData = new DataOfWeather();
     private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
     private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
+    private String nameOfCity;
 
     public Database(){
+        nameOfCity = "";
         for(int i = 0; i < numberOfHours; i++){
             hourlyForecast[i] = new DataOfWeather();
         }
@@ -25,7 +27,7 @@ public class Database {
         }
     }
 
-    public void request(String nameOfCity)
+    public void request()
     {
         reqCurWeather("https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&units=metric&appid=c76548e17d6b42b99e631401cd0e0f75");
         reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&units=metric&appid=c76548e17d6b42b99e631401cd0e0f75");
@@ -87,5 +89,9 @@ public class Database {
 
     public DataOfWeather[] getDailyForecast() {
         return dailyForecast;
+    }
+
+    public void setNameOfCity(String nameOfCity) {
+        this.nameOfCity = nameOfCity;
     }
 }

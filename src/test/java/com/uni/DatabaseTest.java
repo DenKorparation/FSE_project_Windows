@@ -13,6 +13,7 @@ class DatabaseTest {
     @BeforeEach
     void setUp() {
         database = new Database();
+        database.setNameOfCity("Minsk");
     }
 
     @Test
@@ -33,7 +34,7 @@ class DatabaseTest {
     @Test
     void request() throws Exception{
         assertTimeout(ofSeconds(5000), () -> {
-            database.request("pinsk");
+            database.request();
         });
     }
 }
