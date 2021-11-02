@@ -5,16 +5,30 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Database {
+    private static final int numberOfHours = 48;
+    private static final int numberOfDays = 7;
     private DataOfWeather curWeatherData = new DataOfWeather();
-    //private DataOfWeather[] hourlyForecast = new DataOfWeather[48];
-    //private DataOfWeather[] dailyForecast = new DataOfWeather[7];
+    private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
+    private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
+
+    public Database(){
+        for(int i = 0; i < numberOfHours; i++){
+            hourlyForecast[i] = new DataOfWeather();
+        }
+        for(int i = 0; i < numberOfDays; i++){
+            dailyForecast[i] = new DataOfWeather();
+        }
+    }
 
     public void request(String nameOfCity)
     {
         reqCurWeather("https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&units=metric&appid=c76548e17d6b42b99e631401cd0e0f75");
+        reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&units=metric&appid=c76548e17d6b42b99e631401cd0e0f75");
     }
     private void reqCurWeather(String url){
         String output = getUrlContent(url);
@@ -25,6 +39,23 @@ public class Database {
             curWeatherData.setWindSpeed(obj.getJSONObject("wind").getFloat("speed"));
             curWeatherData.setPressure(obj.getJSONObject("main").getFloat("pressure"));
             curWeatherData.setHumidity(obj.getJSONObject("main").getFloat("humidity"));
+            curWeatherData.setTime(obj.getInt("dt"));
+        }
+    }
+
+    private void reqHourlyForecast(String url){
+        String output = getUrlContent(url);
+        if(!output.isEmpty()){
+            JSONObject obj = new JSONObject(output);
+            JSONArray list = obj.getJSONArray("list");
+            for(int i = 0; i < numberOfHours; i++){
+                hourlyForecast[i].setTemp(list.getJSONObject(i).getJSONObject("main").getFloat("temp"));
+                hourlyForecast[i].setFeelsLikeTemp(list.getJSONObject(i).getJSONObject("main").getFloat("feels_like"));
+                hourlyForecast[i].setWindSpeed(list.getJSONObject(i).getJSONObject("wind").getFloat("speed"));
+                hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getFloat("pressure"));
+                hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getFloat("humidity"));
+                hourlyForecast[i].setTime(list.getJSONObject(i).getInt("dt"));
+            }
         }
     }
 
@@ -48,5 +79,13 @@ public class Database {
 
     public DataOfWeather getCurWeatherData() {
         return curWeatherData;
+    }
+
+    public DataOfWeather[] getHourlyForecast() {
+        return hourlyForecast;
+    }
+
+    public DataOfWeather[] getDailyForecast() {
+        return dailyForecast;
     }
 }
