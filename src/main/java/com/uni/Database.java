@@ -36,12 +36,16 @@ public class Database {
         String output = getUrlContent(url);
         if(!output.isEmpty()){
             JSONObject obj = new JSONObject(output);
-            curWeatherData.setTemp(obj.getJSONObject("main").getFloat("temp"));
-            curWeatherData.setFeelsLikeTemp(obj.getJSONObject("main").getFloat("feels_like"));
-            curWeatherData.setWindSpeed(obj.getJSONObject("wind").getFloat("speed"));
-            curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
-            curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
-            curWeatherData.setTime(obj.getInt("dt"));
+            if(obj.getInt("cod") != 404) {
+                curWeatherData.setTemp(obj.getJSONObject("main").getFloat("temp"));
+                curWeatherData.setFeelsLikeTemp(obj.getJSONObject("main").getFloat("feels_like"));
+                curWeatherData.setWindSpeed(obj.getJSONObject("wind").getFloat("speed"));
+                curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
+                curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
+                curWeatherData.setTime(obj.getInt("dt"));
+            } else{
+                System.out.println(obj.getString("message"));
+            }
         }
     }
 
@@ -49,14 +53,19 @@ public class Database {
         String output = getUrlContent(url);
         if(!output.isEmpty()){
             JSONObject obj = new JSONObject(output);
-            JSONArray list = obj.getJSONArray("list");
-            for(int i = 0; i < numberOfHours; i++){
-                hourlyForecast[i].setTemp(list.getJSONObject(i).getJSONObject("main").getFloat("temp"));
-                hourlyForecast[i].setFeelsLikeTemp(list.getJSONObject(i).getJSONObject("main").getFloat("feels_like"));
-                hourlyForecast[i].setWindSpeed(list.getJSONObject(i).getJSONObject("wind").getFloat("speed"));
-                hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getInt("pressure"));
-                hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getInt("humidity"));
-                hourlyForecast[i].setTime(list.getJSONObject(i).getInt("dt"));
+            if(obj.getInt("cod") != 404) {
+                JSONArray list = obj.getJSONArray("list");
+                for (int i = 0; i < numberOfHours; i++) {
+                    hourlyForecast[i].setTemp(list.getJSONObject(i).getJSONObject("main").getFloat("temp"));
+                    hourlyForecast[i].setFeelsLikeTemp(list.getJSONObject(i).getJSONObject("main").getFloat("feels_like"));
+                    hourlyForecast[i].setWindSpeed(list.getJSONObject(i).getJSONObject("wind").getFloat("speed"));
+                    hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getInt("pressure"));
+                    hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getInt("humidity"));
+                    hourlyForecast[i].setTime(list.getJSONObject(i).getInt("dt"));
+                }
+            }
+            else{
+                System.out.println(obj.getString("message"));
             }
         }
     }
@@ -74,7 +83,7 @@ public class Database {
             }
             bufferedReader.close();
         }catch (Exception e){
-            System.out.println("Такой город не был найден!");
+            return "{\"cod\":\"404\",\"message\":\"city not found\"}";
         }
         return content.toString();
     }
