@@ -4,8 +4,8 @@ public class DataOfWeather {
     private float temp;
     private float feelsLikeTemp;
     private float windSpeed;
-    private float pressure;
-    private float humidity;
+    private int pressure;
+    private int humidity;
     private int time;
 
     public float getTemp() {
@@ -36,7 +36,7 @@ public class DataOfWeather {
         return pressure;
     }
 
-    public void setPressure(float pressure) {
+    public void setPressure(int pressure) {
         this.pressure = pressure;
     }
 
@@ -44,7 +44,7 @@ public class DataOfWeather {
         return humidity;
     }
 
-    public void setHumidity(float humidity) {
+    public void setHumidity(int humidity) {
         this.humidity = humidity;
     }
 

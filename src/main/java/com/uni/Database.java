@@ -37,8 +37,8 @@ public class Database {
             curWeatherData.setTemp(obj.getJSONObject("main").getFloat("temp"));
             curWeatherData.setFeelsLikeTemp(obj.getJSONObject("main").getFloat("feels_like"));
             curWeatherData.setWindSpeed(obj.getJSONObject("wind").getFloat("speed"));
-            curWeatherData.setPressure(obj.getJSONObject("main").getFloat("pressure"));
-            curWeatherData.setHumidity(obj.getJSONObject("main").getFloat("humidity"));
+            curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
+            curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
             curWeatherData.setTime(obj.getInt("dt"));
         }
     }
@@ -52,8 +52,8 @@ public class Database {
                 hourlyForecast[i].setTemp(list.getJSONObject(i).getJSONObject("main").getFloat("temp"));
                 hourlyForecast[i].setFeelsLikeTemp(list.getJSONObject(i).getJSONObject("main").getFloat("feels_like"));
                 hourlyForecast[i].setWindSpeed(list.getJSONObject(i).getJSONObject("wind").getFloat("speed"));
-                hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getFloat("pressure"));
-                hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getFloat("humidity"));
+                hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getInt("pressure"));
+                hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getInt("humidity"));
                 hourlyForecast[i].setTime(list.getJSONObject(i).getInt("dt"));
             }
         }
