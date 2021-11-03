@@ -8,11 +8,11 @@ import javafx.stage.Stage;
 
 public class App  extends Application {
 
-    Database database = new Database();
+    private Database database = new Database();
 
-    public static void launch(String[] args)
-    {
-        Application.launch(args);
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
     @Override
