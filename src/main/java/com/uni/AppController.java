@@ -2,14 +2,11 @@ package com.uni;
 
 
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class AppController {
 
@@ -20,13 +17,7 @@ public class AppController {
     private URL location;
 
     @FXML
-    private Button EnterCity;
-
-
-    @FXML
-    void display(ActionEvent event) {
-
-    }
+    private TextField EnterCity;
 
     @FXML
     void initialize() {
