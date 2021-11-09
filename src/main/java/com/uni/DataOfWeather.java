@@ -16,7 +16,9 @@ public class DataOfWeather {
     }
 
     public void setTemp(float temp) {
+        System.out.println(temp);
         this.temp = temp;
+        System.out.println('|' + this.temp + '|');
     }
 
     public float getFeelsLikeTemp() {

@@ -3,13 +3,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #FFFAFA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.AppController">
    <children>
-      <Button fx:id="EnterButton" layoutX="563.0" layoutY="21.0" mnemonicParsing="false" onAction="#OnClickMethod" text="Узнать погоду" />
-      <TextField fx:id="EnterCity" layoutX="25.0" layoutY="21.0" prefHeight="25.0" prefWidth="504.0" promptText="Введите город" />
-      <Label fx:id="lbl" alignment="TOP_LEFT" layoutX="40.0" layoutY="64.0" prefHeight="25.0" prefWidth="209.0" text="Город" />
-      <Label fx:id="Temp" layoutX="40.0" layoutY="89.0" prefHeight="43.0" prefWidth="94.0" text="Температура" />
+      <Button fx:id="EnterButton" defaultButton="true" layoutX="563.0" layoutY="21.0" mnemonicParsing="false" onAction="#OnClickMethod" opacity="0.52" text="Узнать погоду">
+         <effect>
+            <Blend />
+         </effect></Button>
+      <TextField fx:id="EnterCity" layoutX="25.0" layoutY="21.0" prefHeight="25.0" prefWidth="532.0" promptText="Введите город" />
+      <Label fx:id="lbl" alignment="TOP_LEFT" layoutX="32.0" layoutY="64.0" prefHeight="25.0" prefWidth="235.0" text="Город:" />
+      <Label fx:id="Temp" layoutX="32.0" layoutY="89.0" prefHeight="43.0" prefWidth="200.0" text="Температура:" />
+      <Label fx:id="feelslikeTemp" layoutX="32.0" layoutY="120.0" prefHeight="25.0" prefWidth="252.0" text="Ощущаемая температура:" />
+      <Label fx:id="windSpeed" layoutX="32.0" layoutY="145.0" prefHeight="25.0" prefWidth="200.0" text="Скорость ветра:" />
+      <Label fx:id="humidity" layoutX="32.0" layoutY="170.0" prefHeight="25.0" prefWidth="200.0" text="Влажность:" />
+      <Label fx:id="pressure" layoutX="32.0" layoutY="195.0" prefHeight="25.0" prefWidth="200.0" text="Давление:" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="336.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

@@ -10,38 +10,60 @@ import javafx.scene.control.TextField;
 
 public class AppController {
 
-    @FXML
-    private ResourceBundle resources;
+    private Database database = new Database();
 
-    @FXML
-    private URL location;
 
-    @FXML
-    private Button EnterButton;
 
-    @FXML
-    private TextField EnterCity;
+        @FXML
+        private ResourceBundle resources;
 
-    @FXML
-    private Label lbl;
+        @FXML
+        private URL location;
 
-    @FXML
-    private Label Temp;
+        @FXML
+        private Button EnterButton;
 
-    @FXML
+        @FXML
+        private TextField EnterCity;
 
-    public void OnClickMethod() {
-        EnterButton.setOnAction(event -> lbl.setText("Город: " + EnterCity.getText()));
-        EnterButton.setText("Clicked");
-        App.database.setNameOfCity(lbl.getText());
-        App.database.request();
+        @FXML
+        private Label Temp;
 
-    }
+        @FXML
+        private Label feelslikeTemp;
+
+        @FXML
+        private Label humidity;
+
+        @FXML
+        private Label lbl;
+
+        @FXML
+        private Label pressure;
+
+        @FXML
+        private Label windSpeed;
+
+        @FXML
+        void OnClickMethod(ActionEvent event) {
+
+        }
 
     @FXML
     void initialize() {
-
-}
+        EnterButton.setOnAction(event -> {
+            EnterButton.setText("Clicked");
+            lbl.setText("Город: " + EnterCity.getText());
+            database.setNameOfCity(EnterCity.getText());
+            database.request();
+            String temp = "Температура: " + Float.toString(database.getCurWeatherData().getTemp()) +  "°C";
+            Temp.setText(temp);
+            feelslikeTemp.setText("Ощущаемая температура: " + Float.toString(database.getCurWeatherData().getFeelsLikeTemp())  +  "°C");
+            windSpeed.setText("Скорость ветра: " +Float.toString(database.getCurWeatherData().getWindSpeed()) + " m/s");
+            humidity.setText("Влажность: " + Float.toString(database.getCurWeatherData().getHumidity()) + "%");
+            pressure.setText("Давление: " + Float.toString(database.getCurWeatherData().getPressure()) + " gPa");
+        });
+    }
 
 
 

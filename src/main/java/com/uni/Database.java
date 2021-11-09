@@ -39,26 +39,27 @@ public class Database {
         reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&units=metric&appid=c76548e17d6b42b99e631401cd0e0f75");
     }
     private void reqCurWeather(String url){
+        System.out.println('|' + url + '|');
         try {
             isCorrectData = true;
             String output = getUrlContent(url);
             if (!output.isEmpty()) {
                 JSONObject obj = new JSONObject(output);
                 if (obj.getInt("cod") != 404) {
-                    curWeatherData.setTemp((float)obj.getJSONObject("main").getDouble("temp"));
-                    curWeatherData.setFeelsLikeTemp((float)obj.getJSONObject("main").getDouble("feels_like"));
-                    curWeatherData.setWindSpeed((float)obj.getJSONObject("wind").getDouble("speed"));
+                    curWeatherData.setTemp((obj.getJSONObject("main").getFloat("temp")));
+                    //System.out.println('|' + curWeatherData.getTemp() + '|');
+                    curWeatherData.setFeelsLikeTemp(obj.getJSONObject("main").getFloat("feels_like"));
+                    curWeatherData.setWindSpeed(obj.getJSONObject("wind").getFloat("speed"));
                     curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
                     curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
                     curWeatherData.setTime(obj.getInt("dt"));
                     curWeatherData.setCondition(obj.getJSONArray("weather").getJSONObject(0).getString("main"));
                     curWeatherData.setIdIcon(obj.getJSONArray("weather").getJSONObject(0).getString("icon"));
-
                     if(curWeatherData.getIdIcon().charAt(curWeatherData.getIdIcon().length() - 1) == 'd')
                         partOfDay = "day";
                     else
                         partOfDay = "night";
-
+                    //System.out.println('|' + curWeatherData.getTemp() + '|');
                     if(String.valueOf(obj.getJSONArray("weather").getJSONObject(0).getInt("id")).charAt(0) == '7')
                         cur_Condition = "fog";
                     else
