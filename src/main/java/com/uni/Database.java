@@ -39,40 +39,68 @@ public class Database {
         reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&units=metric&appid=c76548e17d6b42b99e631401cd0e0f75");
     }
     private void reqCurWeather(String url){
-        String output = getUrlContent(url);
-        if(!output.isEmpty()){
-            JSONObject obj = new JSONObject(output);
-            if(obj.getInt("cod") != 404) {
-                curWeatherData.setTemp(obj.getJSONObject("main").getFloat("temp"));
-                curWeatherData.setFeelsLikeTemp(obj.getJSONObject("main").getFloat("feels_like"));
-                curWeatherData.setWindSpeed(obj.getJSONObject("wind").getFloat("speed"));
-                curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
-                curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
-                curWeatherData.setTime(obj.getInt("dt"));
-            } else{
-                System.out.println(obj.getString("message"));
+        try {
+            isCorrectData = true;
+            String output = getUrlContent(url);
+            if (!output.isEmpty()) {
+                JSONObject obj = new JSONObject(output);
+                if (obj.getInt("cod") != 404) {
+                    curWeatherData.setTemp((float)obj.getJSONObject("main").getDouble("temp"));
+                    curWeatherData.setFeelsLikeTemp((float)obj.getJSONObject("main").getDouble("feels_like"));
+                    curWeatherData.setWindSpeed((float)obj.getJSONObject("wind").getDouble("speed"));
+                    curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
+                    curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
+                    curWeatherData.setTime(obj.getInt("dt"));
+                    curWeatherData.setCondition(obj.getJSONObject("weather").getString("main"));
+                    curWeatherData.setIdIcon(obj.getJSONObject("weather").getString("icon"));
+
+                    if(curWeatherData.getIdIcon().charAt(curWeatherData.getIdIcon().length() - 1) == 'd')
+                        partOfDay = "day";
+                    else
+                        partOfDay = "night";
+
+                    if(obj.getJSONObject("weather").getString("id").charAt(0) == 7)
+                        cur_Condition = "fog";
+                    else
+                        cur_Condition = curWeatherData.getCondition();
+                }
+                else
+                    isCorrectData = false;
             }
+            else
+                isCorrectData = false;
+        } catch (Exception e){
+            e.printStackTrace();
+            isCorrectData = false;
         }
     }
 
     private void reqHourlyForecast(String url){
-        String output = getUrlContent(url);
-        if(!output.isEmpty()){
-            JSONObject obj = new JSONObject(output);
-            if(obj.getInt("cod") != 404) {
-                JSONArray list = obj.getJSONArray("list");
-                for (int i = 0; i < numberOfHours; i++) {
-                    hourlyForecast[i].setTemp(list.getJSONObject(i).getJSONObject("main").getFloat("temp"));
-                    hourlyForecast[i].setFeelsLikeTemp(list.getJSONObject(i).getJSONObject("main").getFloat("feels_like"));
-                    hourlyForecast[i].setWindSpeed(list.getJSONObject(i).getJSONObject("wind").getFloat("speed"));
-                    hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getInt("pressure"));
-                    hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getInt("humidity"));
-                    hourlyForecast[i].setTime(list.getJSONObject(i).getInt("dt"));
-                }
+        try{
+            isCorrectData = true;
+            String output = getUrlContent(url);
+            if(!output.isEmpty()){
+                JSONObject obj = new JSONObject(output);
+                if(obj.getInt("cod") != 404) {
+                    JSONArray list = obj.getJSONArray("list");
+                    for (int i = 0; i < numberOfHours; i++) {
+                        hourlyForecast[i].setTemp((float)list.getJSONObject(i).getJSONObject("main").getDouble("temp"));
+                        hourlyForecast[i].setFeelsLikeTemp((float)list.getJSONObject(i).getJSONObject("main").getDouble("feels_like"));
+                        hourlyForecast[i].setWindSpeed((float)list.getJSONObject(i).getJSONObject("wind").getDouble("speed"));
+                        hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getInt("pressure"));
+                        hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getInt("humidity"));
+                        hourlyForecast[i].setTime(list.getJSONObject(i).getInt("dt"));
+                        hourlyForecast[i].setCondition(obj.getJSONObject("weather").getString("main"));
+                        hourlyForecast[i].setIdIcon(obj.getJSONObject("weather").getString("icon"));
+                    }
+                }else
+                    isCorrectData = false;
             }
-            else{
-                System.out.println(obj.getString("message"));
-            }
+            else
+                isCorrectData = false;
+        } catch (Exception e){
+            e.printStackTrace();
+            isCorrectData = false;
         }
     }
 
