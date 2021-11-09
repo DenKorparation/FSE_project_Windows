@@ -16,9 +16,15 @@ public class Database {
     private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
     private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
     private String nameOfCity;
+    private String cur_Condition;
+    private String partOfDay;
+    private boolean isCorrectData;
 
     public Database(){
+        isCorrectData = false;
+        partOfDay = "day";
         nameOfCity = "";
+        cur_Condition = "clear";
         for(int i = 0; i < numberOfHours; i++){
             hourlyForecast[i] = new DataOfWeather();
         }
@@ -102,5 +108,21 @@ public class Database {
 
     public void setNameOfCity(String nameOfCity) {
         this.nameOfCity = nameOfCity;
+    }
+
+    public String getNameOfCity(){
+        return nameOfCity;
+    }
+
+    public boolean isCorrectData() {
+        return isCorrectData;
+    }
+
+    public String getPartOfDay() {
+        return partOfDay;
+    }
+
+    public String getCur_Condition() {
+        return cur_Condition;
     }
 }
