@@ -4,22 +4,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #FFFAFA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.AppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #FFFAFA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.AppController">
    <children>
-      <Button fx:id="EnterButton" defaultButton="true" layoutX="563.0" layoutY="21.0" mnemonicParsing="false" onAction="#OnClickMethod" opacity="0.52" text="Узнать погоду">
+      <Button fx:id="EnterButton" defaultButton="true" layoutX="971.0" layoutY="21.0" mnemonicParsing="false" onAction="#OnClickMethod" opacity="0.52" text="Узнать погоду">
          <effect>
             <Blend />
          </effect></Button>
-      <TextField fx:id="EnterCity" layoutX="25.0" layoutY="21.0" prefHeight="25.0" prefWidth="532.0" promptText="Введите город" />
-      <Label fx:id="lbl" alignment="TOP_LEFT" layoutX="32.0" layoutY="64.0" prefHeight="25.0" prefWidth="235.0" text="Город:" />
-      <Label fx:id="Temp" layoutX="32.0" layoutY="89.0" prefHeight="43.0" prefWidth="200.0" text="Температура:" />
-      <Label fx:id="feelslikeTemp" layoutX="32.0" layoutY="120.0" prefHeight="25.0" prefWidth="252.0" text="Ощущаемая температура:" />
-      <Label fx:id="windSpeed" layoutX="32.0" layoutY="145.0" prefHeight="25.0" prefWidth="200.0" text="Скорость ветра:" />
-      <Label fx:id="humidity" layoutX="32.0" layoutY="170.0" prefHeight="25.0" prefWidth="200.0" text="Влажность:" />
-      <Label fx:id="pressure" layoutX="32.0" layoutY="195.0" prefHeight="25.0" prefWidth="200.0" text="Давление:" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="336.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="EnterCity" layoutX="541.0" layoutY="14.0" prefHeight="36.0" prefWidth="424.0" promptText="Введите город">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <Label fx:id="lbl" layoutX="32.0" layoutY="14.0" prefHeight="39.0" prefWidth="235.0" text="Город:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="Temp" layoutX="77.0" layoutY="61.0" prefHeight="160.0" prefWidth="171.0" text="Temp">
+         <font>
+            <Font size="47.0" />
+         </font></Label>
+      <Label fx:id="feelslikeTemp" layoutX="239.0" layoutY="141.0" prefHeight="25.0" prefWidth="252.0" text="Ощущается как" />
+      <Label fx:id="windSpeed" layoutX="32.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" text="Скорость ветра:" />
+      <Label fx:id="humidity" layoutX="178.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" text="Влажность:" />
+      <Label fx:id="pressure" layoutX="300.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" text="Давление:" />
+      <Label fx:id="curTime" layoutX="178.0" layoutY="21.0" prefHeight="25.0" prefWidth="122.0" text="Time" />
    </children>
 </AnchorPane>

@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class AppController {
 
@@ -19,6 +21,8 @@ public class AppController {
 
         @FXML
         private URL location;
+
+
 
         @FXML
         private Button EnterButton;
@@ -39,7 +43,11 @@ public class AppController {
         private Label lbl;
 
         @FXML
+        private Label curTime;
+
+        @FXML
         private Label pressure;
+
 
         @FXML
         private Label windSpeed;
@@ -53,15 +61,17 @@ public class AppController {
     void initialize() {
         EnterButton.setOnAction(event -> {
             EnterButton.setText("Clicked");
-            lbl.setText("Город: " + EnterCity.getText());
+            lbl.setText("Город " + EnterCity.getText());
             database.setNameOfCity(EnterCity.getText());
             database.request();
-            String temp = "Температура: " + Float.toString(database.getCurWeatherData().getTemp()) +  "°C";
+            String temp = (database.getCurWeatherData().getTemp()) +  "°";
             Temp.setText(temp);
-            feelslikeTemp.setText("Ощущаемая температура: " + Float.toString(database.getCurWeatherData().getFeelsLikeTemp())  +  "°C");
-            windSpeed.setText("Скорость ветра: " +Float.toString(database.getCurWeatherData().getWindSpeed()) + " m/s");
-            humidity.setText("Влажность: " + Float.toString(database.getCurWeatherData().getHumidity()) + "%");
-            pressure.setText("Давление: " + Float.toString(database.getCurWeatherData().getPressure()) + " gPa");
+            feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
+            windSpeed.setText("Скорость ветра: " +(database.getCurWeatherData().getWindSpeed()) + " m/s");
+            humidity.setText("Влажность: " + (database.getCurWeatherData().getHumidity()) + "%");
+            pressure.setText("Давление: " + (database.getCurWeatherData().getPressure()) + " gPa");
+            curTime.setText("Сейчас " + (database.getCurWeatherData().getTime()));
+
         });
     }
 
