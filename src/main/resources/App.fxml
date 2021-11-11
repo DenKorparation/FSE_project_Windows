@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -30,5 +32,11 @@
       <Label fx:id="humidity" layoutX="178.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" text="Влажность:" />
       <Label fx:id="pressure" layoutX="300.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" text="Давление:" />
       <Label fx:id="curTime" layoutX="178.0" layoutY="21.0" prefHeight="25.0" prefWidth="122.0" text="Time" />
+      <AnchorPane layoutX="32.0" layoutY="252.0" prefHeight="3.0" prefWidth="337.0" style="-fx-background-color: #808080;" />
+      <ImageView fx:id="sky" fitHeight="150.0" fitWidth="200.0" layoutX="78.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../java/com/uni/sky.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

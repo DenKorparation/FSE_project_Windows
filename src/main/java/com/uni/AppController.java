@@ -9,10 +9,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class AppController {
 
     private Database database = new Database();
+
 
 
 
@@ -31,16 +33,25 @@ public class AppController {
         private TextField EnterCity;
 
         @FXML
+        private Label HourlyForecast;
+
+        @FXML
         private Label Temp;
 
         @FXML
         private Label feelslikeTemp;
 
         @FXML
+        private ImageView sky;
+
+
+        @FXML
         private Label humidity;
 
         @FXML
         private Label lbl;
+
+
 
         @FXML
         private Label curTime;
@@ -55,7 +66,9 @@ public class AppController {
         @FXML
         void OnClickMethod(ActionEvent event) {
 
+
         }
+
 
     @FXML
     void initialize() {
@@ -71,6 +84,8 @@ public class AppController {
             humidity.setText("Влажность: " + (database.getCurWeatherData().getHumidity()) + "%");
             pressure.setText("Давление: " + (database.getCurWeatherData().getPressure()) + " gPa");
             curTime.setText("Сейчас " + (database.getCurWeatherData().getTime()));
+
+            /*HourlyForecast.setText(database.getHourlyForecast[1]);*/
 
         });
     }

@@ -16,13 +16,14 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/App.fxml"));
-        Image image = new Image(new FileInputStream("src/main/java/assets/sky.jpg"));
+       /* Image image = new Image(new FileInputStream("src/main/java/assets/sky.jpg"));
         ImageView imageView1 = new ImageView(image);
+        imageView1.setImage(image);
         imageView1.setX(50);
         imageView1.setY(25);
         imageView1.setFitHeight(300);
-        imageView1.setFitWidth(250);
-        imageView1.setPreserveRatio(true);
+        imageView1.setFitWidth(250);*/
+
 
 
         primaryStage.setTitle("Gismeteostats");
