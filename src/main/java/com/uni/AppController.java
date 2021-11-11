@@ -1,5 +1,6 @@
 package com.uni;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,8 +25,6 @@ public class AppController {
         @FXML
         private URL location;
 
-
-
         @FXML
         private Button EnterButton;
 
@@ -42,22 +41,23 @@ public class AppController {
         private Label feelslikeTemp;
 
         @FXML
-        private ImageView sky;
-
-
-        @FXML
         private Label humidity;
 
         @FXML
         private Label lbl;
-
-
 
         @FXML
         private Label curTime;
 
         @FXML
         private Label pressure;
+
+
+        @FXML
+        private Label PartOfDay;
+
+        @FXML
+        private ImageView sky;
 
 
         @FXML
@@ -85,7 +85,9 @@ public class AppController {
             pressure.setText("Давление: " + (database.getCurWeatherData().getPressure()) + " gPa");
             curTime.setText("Сейчас " + (database.getCurWeatherData().getTime()));
 
-            /*HourlyForecast.setText(database.getHourlyForecast[1]);*/
+            PartOfDay.setText(database.getPartOfDay());
+
+
 
         });
     }
