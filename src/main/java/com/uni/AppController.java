@@ -1,5 +1,6 @@
 package com.uni;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -7,12 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 public class AppController {
 
     private Database database = new Database();
 
-
+        @FXML
+        private ImageView icon;
 
         @FXML
         private ResourceBundle resources;
@@ -44,7 +47,10 @@ public class AppController {
         @FXML
         private Label windSpeed;
 
-        @FXML
+    public AppController() throws FileNotFoundException {
+    }
+
+    @FXML
         void OnClickMethod(ActionEvent event) {
 
         }
@@ -59,7 +65,7 @@ public class AppController {
             String temp = "Температура: " + Float.toString(database.getCurWeatherData().getTemp()) +  "°C";
             Temp.setText(temp);
             feelslikeTemp.setText("Ощущаемая температура: " + Float.toString(database.getCurWeatherData().getFeelsLikeTemp())  +  "°C");
-            windSpeed.setText("Скорость ветра: " +Float.toString(database.getCurWeatherData().getWindSpeed()) + " m/s");
+            windSpeed.setText("Скорость ветра: " + Float.toString(database.getCurWeatherData().getWindSpeed()) + " m/s");
             humidity.setText("Влажность: " + Float.toString(database.getCurWeatherData().getHumidity()) + "%");
             pressure.setText("Давление: " + Float.toString(database.getCurWeatherData().getPressure()) + " gPa");
         });
