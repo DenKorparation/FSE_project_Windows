@@ -86,12 +86,8 @@ public class AppController {
 
             PartOfDay.setText(database.getPartOfDay());
 
-
-
+            sky.setImage(new Image("raind.jpg"));
         });
     }
-
-
-
 
 }
