@@ -3,6 +3,7 @@ package com.uni;
 import java.io.FileNotFoundException;
 import java.io.File;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,16 +59,25 @@ public class AppController {
         private Label PartOfDay;
 
         @FXML
-        private ImageView sky;
+        private ImageView mainIm;
+    @FXML
+    private Label condition;
 
 
         @FXML
         private Label windSpeed;
 
         @FXML
+        private String curCond;
+    @FXML
+    private Label hourlyForecast;
+
+        @FXML
         void OnClickMethod(ActionEvent event) {
 
+
         }
+
 
     @FXML
     void initialize() {
@@ -83,10 +93,24 @@ public class AppController {
             humidity.setText("Влажность: " + (database.getCurWeatherData().getHumidity()) + "%");
             pressure.setText("Давление: " + (database.getCurWeatherData().getPressure()) + " gPa");
             curTime.setText("Сейчас " + (database.getCurWeatherData().getTime()));
+            mainIm.getImage();
+            curCond = database.getCur_Condition();
+            /*condition.setText(database.getCur_Condition());*/
+            if (Objects.equals(curCond, "Clear")) {
+                mainIm.setImage(new Image("clear.jpg"));
+                condition.setText("Ясно");
+            }
+            if (Objects.equals(curCond, "Clouds")) {
 
-            PartOfDay.setText(database.getPartOfDay());
+                mainIm.setImage(new Image("clouds.jpg"));
+                condition.setText("Облачно");
+            }
+            /*for (int i=0; i<48; i++) {
+                float hCast = database.getHourlyForecast()[i].getTemp();
+                hourlyForecast.getText(hCast);
 
-            sky.setImage(new Image("raind.jpg"));
+            }*/
+
         });
     }
 

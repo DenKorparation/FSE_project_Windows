@@ -16,10 +16,6 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/App.fxml"));
-
-
-
-
         primaryStage.setTitle("Gismeteostats");
         primaryStage.setScene(new Scene(root, 1100 ,  650));
         primaryStage.setResizable(false);
