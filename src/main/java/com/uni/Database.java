@@ -12,7 +12,6 @@ import org.json.JSONObject;
 public class Database {
     private static final int numberOfHours = 48;
     private static final int numberOfDays = 7;
-    public String[] getHourlyForecast;  //
     private DataOfWeather curWeatherData = new DataOfWeather();
     private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
     private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
