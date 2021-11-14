@@ -186,7 +186,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.uni/com.uni.Main</mainClass>
+                            <mainClass>com.uni/com.uni.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
@@ -194,4 +194,6 @@
         </plugins>
     </build>
 
+
 </project>
+

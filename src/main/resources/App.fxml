@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #FFFAFA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.AppController">
+   <children>
+      <Button fx:id="EnterButton" defaultButton="true" layoutX="991.0" layoutY="20.0" mnemonicParsing="false" onAction="#OnClickMethod" opacity="0.52" text="Узнать погоду">
+         <effect>
+            <Blend />
+         </effect></Button>
+      <TextField fx:id="EnterCity" layoutX="563.0" layoutY="14.0" prefHeight="36.0" prefWidth="424.0" promptText="Введите город">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <ImageView fx:id="sky" fitHeight="389.0" fitWidth="384.0" layoutX="28.0" layoutY="65.0" opacity="0.41" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sky.jpg" />
+         </image>
+         <effect>
+            <BoxBlur />
+         </effect>
+      </ImageView>
+      <Label fx:id="lbl" layoutX="32.0" layoutY="14.0" prefHeight="39.0" prefWidth="235.0" text="Город:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="Temp" layoutX="77.0" layoutY="61.0" prefHeight="160.0" prefWidth="171.0" text="Temp">
+         <font>
+            <Font size="47.0" />
+         </font></Label>
+      <Label fx:id="feelslikeTemp" layoutX="220.0" layoutY="141.0" prefHeight="25.0" prefWidth="252.0" text="Ощущается как" />
+      <Label fx:id="windSpeed" layoutX="32.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" text="Скорость ветра:" />
+      <Label fx:id="humidity" layoutX="178.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" text="Влажность:" />
+      <Label fx:id="pressure" layoutX="300.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" text="Давление:" />
+      <Label fx:id="curTime" layoutX="178.0" layoutY="21.0" prefHeight="25.0" prefWidth="122.0" text="Time" />
+      <AnchorPane layoutX="32.0" layoutY="255.0" prefHeight="3.0" prefWidth="376.0" style="-fx-background-color: #808080;" />
+      <Label fx:id="HourlyForecast" layoutX="32.0" layoutY="506.0" prefHeight="39.0" prefWidth="146.0" />
+      <Label fx:id="PartOfDay" layoutX="267.0" layoutY="14.0" prefHeight="39.0" prefWidth="113.0" text="PartOfDay" />
+   </children>
+</AnchorPane>

@@ -1,35 +1,37 @@
 package com.uni;
 
 import javafx.application.Application;
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class App  extends Application {
+import java.io.FileInputStream;
+import java.io.IOException;
 
-    Database database = new Database();
-
-    public static void launch(String[] args)
-    {
-        Application.launch(args);
-    }
+public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage primaryStage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/App.fxml"));
 
-        // установка надписи
-        Text text = new Text("Hello JAVAFX!");
-        text.setLayoutY(80);    // установка положения надписи по оси Y
-        text.setLayoutX(80);   // установка положения надписи по оси X
 
-        Group group = new Group(text);
 
-        Scene scene = new Scene(group);
-        stage.setScene(scene);
-        stage.setTitle("GISMETEOSTATS");
-        stage.setWidth(300);
-        stage.setHeight(250);
-        stage.show();
+
+        primaryStage.setTitle("Gismeteostats");
+        primaryStage.setScene(new Scene(root, 1100 ,  650));
+        primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image("https://ds-blobs-2.cdn.devapps.ru/6380085.png"));
+        primaryStage.show();
+    }
+
+
+
+    public static void main(String[] args) {
+        launch();
     }
 }
+
+
