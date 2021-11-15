@@ -5,6 +5,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,57 +19,54 @@ public class AppController {
 
     private Database database = new Database();
 
+    @FXML
+    private ResourceBundle resources;
 
+    @FXML
+    private URL location;
 
+    @FXML
+    private Button EnterButton;
 
-        @FXML
-        private ResourceBundle resources;
+    @FXML
+    private TextField EnterCity;
 
-        @FXML
-        private URL location;
+    @FXML
+    private Label HourlyForecast;
 
-        @FXML
-        private Button EnterButton;
+    @FXML
+    private Label Temp;
 
-        @FXML
-        private TextField EnterCity;
+    @FXML
+    private Label feelslikeTemp;
 
-        @FXML
-        private Label HourlyForecast;
+    @FXML
+    private Label humidity;
 
-        @FXML
-        private Label Temp;
+    @FXML
+    private Label lbl;
 
-        @FXML
-        private Label feelslikeTemp;
+    @FXML
+    private Label curTime;
 
-        @FXML
-        private Label humidity;
+    @FXML
+    private Label pressure;
 
-        @FXML
-        private Label lbl;
+    @FXML
+    private Label PartOfDay;
 
-        @FXML
-        private Label curTime;
+    @FXML
+    private ImageView mainIm;
 
-        @FXML
-        private Label pressure;
-
-
-        @FXML
-        private Label PartOfDay;
-
-        @FXML
-        private ImageView mainIm;
     @FXML
     private Label condition;
 
+    @FXML
+    private Label windSpeed;
 
-        @FXML
-        private Label windSpeed;
+    @FXML
+    private String curCond;
 
-        @FXML
-        private String curCond;
     @FXML
     private Label hourlyForecast;
 
@@ -113,5 +111,4 @@ public class AppController {
 
         });
     }
-
 }
