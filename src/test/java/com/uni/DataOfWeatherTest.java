@@ -3,6 +3,8 @@ package com.uni;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DataOfWeatherTest {
@@ -11,7 +13,7 @@ class DataOfWeatherTest {
     @BeforeEach
     void setUp() {
         dataOfWeather = new DataOfWeather();
-        dataOfWeather.setTime(1635840000);
+        dataOfWeather.setTime(new Date((long)1635840000));
         dataOfWeather.setHumidity(75);
         dataOfWeather.setPressure(1010);
         dataOfWeather.setTemp((float)5.5);
