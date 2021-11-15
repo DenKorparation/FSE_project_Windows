@@ -82,13 +82,11 @@ public class AppController {
     void OnClickMethod(ActionEvent event) {
         /*EnterButton.setText("Clicked");*/               // ТОЧНО НУЖНО????
         database.setNameOfCity(EnterCity.getText());
-
+        result_info.setText("Ожидайте..."); //!!!!!!!!!!!!ДОБАВЬ ТАКУЮ НАДПИСЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Thread t = new Thread(() -> {
-            result_info.setText("Ожидайте..."); //!!!!!!!!!!!!ДОБАВЬ ТАКУЮ НАДПИСЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!
             database.request();
 
             Platform.runLater(() -> {
-                result_info.setText("");
                 if(database.isCorrectData()){
                     lbl.setText("Город " + EnterCity.getText());
                     String temp = (database.getCurWeatherData().getTemp()) +  "°";
@@ -118,6 +116,7 @@ public class AppController {
                     hourlyForecast.getText(hCast);
 
                 }*/
+                    result_info.setText("");
                 }
                 else{
                     //do someting
