@@ -66,32 +66,44 @@ public class AppController {
 
     @FXML
     private String curCond;
+    @FXML
+    private Label result_info;
 
     @FXML
     private Label hourlyForecast;
 
     @FXML
+    private ImageView humidityIm;
+
+    @FXML
+    private ImageView windIm;
+
+    @FXML
     void OnClickMethod(ActionEvent event) {
-        EnterButton.setText("Clicked");               // ТОЧНО НУЖНО????
+        /*EnterButton.setText("Clicked");*/               // ТОЧНО НУЖНО????
         database.setNameOfCity(EnterCity.getText());
 
         Thread t = new Thread(() -> {
-            //result_info.setText("Ожидайте..."); !!!!!!!!!!!!ДОБАВЬ ТАКУЮ НАДПИСЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            result_info.setText("Ожидайте..."); //!!!!!!!!!!!!ДОБАВЬ ТАКУЮ НАДПИСЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!
             database.request();
 
             Platform.runLater(() -> {
+                result_info.setText("");
                 if(database.isCorrectData()){
                     lbl.setText("Город " + EnterCity.getText());
                     String temp = (database.getCurWeatherData().getTemp()) +  "°";
                     Temp.setText(temp);
                     feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
-                    windSpeed.setText("Скорость ветра: " +(database.getCurWeatherData().getWindSpeed()) + " m/s");
-                    humidity.setText("Влажность: " + (database.getCurWeatherData().getHumidity()) + "%");
+                    windSpeed.setText((database.getCurWeatherData().getWindSpeed()) + " m/s");
+                    humidity.setText( (database.getCurWeatherData().getHumidity()) + "%");
                     pressure.setText("Давление: " + (database.getCurWeatherData().getPressure()) + " gPa");
                     curTime.setText("Сейчас " + (database.getCurWeatherData().getTime()));
+                    humidityIm.getImage();
+                    humidityIm.setImage(new Image("humidityIm.png"));
+                    windIm.getImage();
+                    windIm.setImage(new Image("wind.png"));
                     mainIm.getImage();
                     curCond = database.getCur_Condition();
-                    /*condition.setText(database.getCur_Condition());*/
                     if (Objects.equals(curCond, "Clear")) {
                         mainIm.setImage(new Image("clear.jpg"));
                         condition.setText("Ясно");
