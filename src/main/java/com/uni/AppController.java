@@ -70,45 +70,55 @@ public class AppController {
     @FXML
     private Label hourlyForecast;
 
-        @FXML
-        void OnClickMethod(ActionEvent event) {
+    @FXML
+    void OnClickMethod(ActionEvent event) {
+        EnterButton.setText("Clicked");               // ТОЧНО НУЖНО????
+        database.setNameOfCity(EnterCity.getText());
 
+        Thread t = new Thread(() -> {
+            //result_info.setText("Ожидайте..."); !!!!!!!!!!!!ДОБАВЬ ТАКУЮ НАДПИСЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            database.request();
 
-        }
+            Platform.runLater(() -> {
+                if(database.isCorrectData()){
+                    lbl.setText("Город " + EnterCity.getText());
+                    String temp = (database.getCurWeatherData().getTemp()) +  "°";
+                    Temp.setText(temp);
+                    feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
+                    windSpeed.setText("Скорость ветра: " +(database.getCurWeatherData().getWindSpeed()) + " m/s");
+                    humidity.setText("Влажность: " + (database.getCurWeatherData().getHumidity()) + "%");
+                    pressure.setText("Давление: " + (database.getCurWeatherData().getPressure()) + " gPa");
+                    curTime.setText("Сейчас " + (database.getCurWeatherData().getTime()));
+                    mainIm.getImage();
+                    curCond = database.getCur_Condition();
+                    /*condition.setText(database.getCur_Condition());*/
+                    if (Objects.equals(curCond, "Clear")) {
+                        mainIm.setImage(new Image("clear.jpg"));
+                        condition.setText("Ясно");
+                    }
+                    if (Objects.equals(curCond, "Clouds")) {
 
+                        mainIm.setImage(new Image("clouds.jpg"));
+                        condition.setText("Облачно");
+                    }
+                /*for (int i=0; i<48; i++) {
+                    float hCast = database.getHourlyForecast()[i].getTemp();
+                    hourlyForecast.getText(hCast);
+
+                }*/
+                }
+                else{
+                    //do someting
+                }
+
+            });
+        });
+        t.start();
+
+    }
 
     @FXML
     void initialize() {
-        EnterButton.setOnAction(event -> {
-            EnterButton.setText("Clicked");
-            lbl.setText("Город " + EnterCity.getText());
-            database.setNameOfCity(EnterCity.getText());
-            database.request();
-            String temp = (database.getCurWeatherData().getTemp()) +  "°";
-            Temp.setText(temp);
-            feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
-            windSpeed.setText("Скорость ветра: " +(database.getCurWeatherData().getWindSpeed()) + " m/s");
-            humidity.setText("Влажность: " + (database.getCurWeatherData().getHumidity()) + "%");
-            pressure.setText("Давление: " + (database.getCurWeatherData().getPressure()) + " gPa");
-            curTime.setText("Сейчас " + (database.getCurWeatherData().getTime()));
-            mainIm.getImage();
-            curCond = database.getCur_Condition();
-            /*condition.setText(database.getCur_Condition());*/
-            if (Objects.equals(curCond, "Clear")) {
-                mainIm.setImage(new Image("clear.jpg"));
-                condition.setText("Ясно");
-            }
-            if (Objects.equals(curCond, "Clouds")) {
 
-                mainIm.setImage(new Image("clouds.jpg"));
-                condition.setText("Облачно");
-            }
-            /*for (int i=0; i<48; i++) {
-                float hCast = database.getHourlyForecast()[i].getTemp();
-                hourlyForecast.getText(hCast);
-
-            }*/
-
-        });
     }
 }
