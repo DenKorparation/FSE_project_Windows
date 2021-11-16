@@ -29,28 +29,32 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label fx:id="Temp" layoutX="77.0" layoutY="61.0" prefHeight="160.0" prefWidth="171.0" text="Temp">
+      <Label fx:id="Temp" layoutX="78.0" layoutY="55.0" prefHeight="160.0" prefWidth="171.0" text="Temp">
          <font>
             <Font size="47.0" />
          </font></Label>
-      <Label fx:id="feelslikeTemp" layoutX="220.0" layoutY="141.0" prefHeight="25.0" prefWidth="252.0" text="Ощущается как" />
-      <Label fx:id="windSpeed" layoutX="71.0" layoutY="172.0" prefHeight="32.0" prefWidth="56.0">
+      <Label fx:id="feelslikeTemp" layoutX="216.0" layoutY="135.0" prefHeight="25.0" prefWidth="252.0" text="Ощущается как" />
+      <Label fx:id="windSpeed" layoutX="77.0" layoutY="172.0" prefHeight="32.0" prefWidth="56.0">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="humidity" layoutX="144.0" layoutY="172.0" prefHeight="32.0" prefWidth="68.0">
+      <Label fx:id="humidity" layoutX="186.0" layoutY="172.0" prefHeight="32.0" prefWidth="68.0">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="pressure" layoutX="258.0" layoutY="172.0" prefHeight="25.0" prefWidth="200.0" text="Давление:" />
+      <Label fx:id="pressure" layoutX="281.0" layoutY="172.0" prefHeight="32.0" prefWidth="94.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <Label fx:id="curTime" layoutX="178.0" layoutY="21.0" prefHeight="25.0" prefWidth="122.0" text="Время" />
-      <AnchorPane layoutX="32.0" layoutY="205.0" opacity="0.59" prefHeight="1.0" prefWidth="376.0" style="-fx-background-color: #808080;" />
+      <AnchorPane layoutX="33.0" layoutY="212.0" opacity="0.59" prefHeight="1.0" prefWidth="376.0" style="-fx-background-color: #808080;" />
       <Label fx:id="HourlyForecast" layoutX="32.0" layoutY="506.0" prefHeight="39.0" prefWidth="146.0" />
       <Accordion />
       <Label fx:id="condition" layoutX="220.0" layoutY="115.0" prefHeight="39.0" prefWidth="122.0" />
       <Label fx:id="result_info" layoutX="577.0" layoutY="53.0" prefHeight="25.0" prefWidth="139.0" />
-      <ImageView fx:id="humidityIm" fitHeight="39.0" fitWidth="38.0" layoutX="108.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="windIm" fitHeight="39.0" fitWidth="38.0" layoutX="32.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="humidityIm" fitHeight="39.0" fitWidth="38.0" layoutX="144.0" layoutY="168.0" opacity="0.96" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="windIm" fitHeight="39.0" fitWidth="38.0" layoutX="32.0" layoutY="168.0" opacity="0.96" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="pressureIm" fitHeight="32.0" fitWidth="38.0" layoutX="246.0" layoutY="170.0" opacity="0.96" pickOnBounds="true" preserveRatio="true" />
       
    </children>
 </AnchorPane>

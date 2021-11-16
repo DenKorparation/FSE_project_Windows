@@ -82,6 +82,9 @@ public class AppController {
     private ImageView windIm;
 
     @FXML
+    private ImageView pressureIm;
+
+    @FXML
     void OnClickMethod(ActionEvent event) {
         /*EnterButton.setText("Clicked");*/               // ТОЧНО НУЖНО????
         database.setNameOfCity(EnterCity.getText());
@@ -97,7 +100,7 @@ public class AppController {
                     feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
                     windSpeed.setText((database.getCurWeatherData().getWindSpeed()) + " m/s");
                     humidity.setText( (database.getCurWeatherData().getHumidity()) + "%");
-                    pressure.setText("Давление: " + (database.getCurWeatherData().getPressure()) + " gPa");
+                    pressure.setText((database.getCurWeatherData().getPressure()) + " gPa");
 
                     SimpleDateFormat sdf = new SimpleDateFormat("dd MM HH:mm z"); // какой формат нужен, выбераем
                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
@@ -106,6 +109,8 @@ public class AppController {
                     humidityIm.setImage(new Image("humidityIm.png"));
                     windIm.getImage();
                     windIm.setImage(new Image("wind.png"));
+                    pressureIm.getImage();
+                    pressureIm.setImage(new Image("pressure.png"));
                     mainIm.getImage();
                     curCond = database.getCur_Condition();
                     if (Objects.equals(curCond, "Clear")) {
