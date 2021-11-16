@@ -13,7 +13,7 @@ class DataOfWeatherTest {
     @BeforeEach
     void setUp() {
         dataOfWeather = new DataOfWeather();
-        dataOfWeather.setTime(new Date((long)1635840000));
+        dataOfWeather.setTime(new Date(1635840000 * 1000L));
         dataOfWeather.setHumidity(75);
         dataOfWeather.setPressure(1010);
         dataOfWeather.setTemp((float)5.5);
@@ -48,6 +48,7 @@ class DataOfWeatherTest {
 
     @Test
     void getTime() {
-        assertEquals(1635840000, dataOfWeather.getTime());
+        Date expexted = new Date(1635840000 * 1000L);
+        assertEquals(expexted, dataOfWeather.getTime());
     }
 }
