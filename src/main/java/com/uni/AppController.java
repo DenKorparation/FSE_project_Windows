@@ -66,6 +66,10 @@ public class AppController {
 
     @FXML
     private String curCond;
+
+    @FXML
+    private String partOfDay;
+
     @FXML
     private Label result_info;
 
@@ -80,6 +84,10 @@ public class AppController {
 
     @FXML
     private ImageView pressureIm;
+    @FXML
+    private ImageView mainIcon;
+    @FXML
+    private ImageView magnifier;
 
     @FXML
     void OnClickMethod(ActionEvent event) {
@@ -91,7 +99,7 @@ public class AppController {
 
             Platform.runLater(() -> {
                 if(database.isCorrectData()){
-                    lbl.setText("Город " + EnterCity.getText());
+                    lbl.setText("Погода в " + EnterCity.getText());
                     String temp = (database.getCurWeatherData().getTemp()) +  "°";
                     Temp.setText(temp);
                     feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
@@ -105,16 +113,25 @@ public class AppController {
                     windIm.setImage(new Image("wind.png"));
                     pressureIm.getImage();
                     pressureIm.setImage(new Image("pressure.png"));
+                    magnifier.setImage(new Image("magnifier.png"));
                     mainIm.getImage();
+                    mainIcon.getImage();
                     curCond = database.getCur_Condition();
-                    if (Objects.equals(curCond, "Clear")) {
-                        mainIm.setImage(new Image("clear.jpg"));
-                        condition.setText("Ясно");
-                    }
-                    if (Objects.equals(curCond, "Clouds")) {
+                    partOfDay = database.getPartOfDay();
+                    condition.setText(database.getCur_Condition());
 
+                    if /*((Objects.equals(curCond, "Clear")) &*/ (Objects.equals(partOfDay, "night")) {
+                        mainIm.setImage(new Image("clearnight.jpg"));
+                        mainIcon.setImage(new Image("01n.png"));
+                    }
+
+                    if ((Objects.equals(curCond, "Clear")) & (Objects.equals(partOfDay, "day"))) {
+                        mainIm.setImage(new Image("clear.jpg"));
+                        mainIcon.setImage(new Image("01d.png"));
+                    }
+                    if (Objects.equals(curCond, "Clouds") & (Objects.equals(partOfDay, "day"))) {
                         mainIm.setImage(new Image("clouds.jpg"));
-                        condition.setText("Облачно");
+                        mainIcon.setImage(new Image("02d.png"));
                     }
                 /*for (int i=0; i<48; i++) {
                     float hCast = database.getHourlyForecast()[i].getTemp();

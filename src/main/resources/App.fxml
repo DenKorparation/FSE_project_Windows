@@ -10,51 +10,68 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #FFFAFA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.AppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.AppController">
    <children>
       <Button fx:id="EnterButton" defaultButton="true" layoutX="991.0" layoutY="20.0" mnemonicParsing="false" onAction="#OnClickMethod" opacity="0.52" text="Узнать погоду">
          <effect>
             <Blend />
-         </effect></Button>
+         </effect>
+         <font>
+            <Font name="Malgun Gothic" size="12.0" />
+         </font></Button>
       <TextField fx:id="EnterCity" layoutX="563.0" layoutY="14.0" prefHeight="36.0" prefWidth="424.0" promptText="Введите город">
          <font>
-            <Font size="18.0" />
+            <Font name="Malgun Gothic" size="18.0" />
          </font></TextField>
-      <ImageView fx:id="mainIm" fitHeight="389.0" fitWidth="384.0" layoutX="28.0" layoutY="65.0" opacity="0.41" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mainIm" fitHeight="389.0" fitWidth="384.0" layoutX="28.0" layoutY="65.0" opacity="0.67" pickOnBounds="true" preserveRatio="true">
          <effect>
-            <BoxBlur />
+            <BoxBlur height="2.0" width="2.0" />
          </effect>
       </ImageView>
-      <Label fx:id="lbl" layoutX="32.0" layoutY="14.0" prefHeight="39.0" prefWidth="235.0" text="Город:">
+      <Label fx:id="lbl" layoutX="33.0" layoutY="59.0" prefHeight="39.0" prefWidth="235.0" text="Погода в" textFill="#ffffffd9">
          <font>
-            <Font size="16.0" />
+            <Font name="Malgun Gothic Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="Temp" layoutX="78.0" layoutY="55.0" prefHeight="160.0" prefWidth="171.0" text="Temp">
+      <Label fx:id="Temp" layoutX="51.0" layoutY="68.0" prefHeight="160.0" prefWidth="171.0" text="Temp" textFill="#ffffffd9">
          <font>
-            <Font size="47.0" />
+            <Font name="Malgun Gothic" size="47.0" />
          </font></Label>
-      <Label fx:id="feelslikeTemp" layoutX="216.0" layoutY="135.0" prefHeight="25.0" prefWidth="252.0" text="Ощущается как" />
-      <Label fx:id="windSpeed" layoutX="77.0" layoutY="172.0" prefHeight="32.0" prefWidth="56.0">
+      <Label fx:id="feelslikeTemp" layoutX="219.0" layoutY="148.0" prefHeight="25.0" prefWidth="252.0" text="Ощущается как" textFill="#ffffffd8">
          <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label fx:id="humidity" layoutX="186.0" layoutY="172.0" prefHeight="32.0" prefWidth="68.0">
+            <Font name="Malgun Gothic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="windSpeed" layoutX="77.0" layoutY="172.0" prefHeight="32.0" prefWidth="68.0" textFill="#ffffffd9">
          <font>
-            <Font size="14.0" />
+            <Font name="Malgun Gothic" size="14.0" />
          </font></Label>
-      <Label fx:id="pressure" layoutX="281.0" layoutY="172.0" prefHeight="32.0" prefWidth="94.0">
+      <Label fx:id="humidity" layoutX="186.0" layoutY="172.0" prefHeight="32.0" prefWidth="68.0" textFill="#ffffffd9">
          <font>
-            <Font size="14.0" />
+            <Font name="Malgun Gothic" size="14.0" />
          </font></Label>
-      <Label fx:id="curTime" layoutX="178.0" layoutY="21.0" prefHeight="25.0" prefWidth="122.0" text="Время" />
+      <Label fx:id="pressure" layoutX="277.0" layoutY="172.0" opacity="0.93" prefHeight="32.0" prefWidth="94.0" textFill="#ffffffd9">
+         <font>
+            <Font name="Malgun Gothic" size="14.0" />
+         </font></Label>
+      <Label fx:id="curTime" layoutX="33.0" layoutY="86.0" prefHeight="25.0" prefWidth="158.0" text="Время" textFill="#ffffffd9">
+         <font>
+            <Font name="Malgun Gothic" size="15.0" />
+         </font></Label>
       <AnchorPane layoutX="33.0" layoutY="212.0" opacity="0.59" prefHeight="1.0" prefWidth="376.0" style="-fx-background-color: #808080;" />
-      <Label fx:id="HourlyForecast" layoutX="32.0" layoutY="506.0" prefHeight="39.0" prefWidth="146.0" />
       <Accordion />
-      <Label fx:id="condition" layoutX="220.0" layoutY="115.0" prefHeight="39.0" prefWidth="122.0" />
-      <Label fx:id="result_info" layoutX="577.0" layoutY="53.0" prefHeight="25.0" prefWidth="139.0" />
-      <ImageView fx:id="humidityIm" fitHeight="39.0" fitWidth="38.0" layoutX="144.0" layoutY="168.0" opacity="0.96" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="windIm" fitHeight="39.0" fitWidth="38.0" layoutX="32.0" layoutY="168.0" opacity="0.96" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="pressureIm" fitHeight="32.0" fitWidth="38.0" layoutX="246.0" layoutY="170.0" opacity="0.96" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="condition" layoutX="219.0" layoutY="129.0" prefHeight="25.0" prefWidth="122.0" textFill="#ffffffd8">
+         <font>
+            <Font name="Malgun Gothic" size="12.0" />
+         </font></Label>
+      <Label fx:id="result_info" layoutX="563.0" layoutY="56.0" prefHeight="25.0" prefWidth="139.0">
+         <font>
+            <Font name="Malgun Gothic" size="12.0" />
+         </font></Label>
+      <ImageView fx:id="humidityIm" fitHeight="39.0" fitWidth="38.0" layoutX="144.0" layoutY="168.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="windIm" fitHeight="39.0" fitWidth="38.0" layoutX="32.0" layoutY="168.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="pressureIm" fitHeight="32.0" fitWidth="38.0" layoutX="239.0" layoutY="172.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="mainIcon" fitHeight="54.0" fitWidth="54.0" layoutX="168.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="magnifier" fitHeight="17.0" fitWidth="18.0" layoutX="957.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
       
    </children>
 </AnchorPane>
