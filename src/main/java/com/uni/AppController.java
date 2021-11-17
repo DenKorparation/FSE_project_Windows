@@ -11,9 +11,7 @@ import java.util.TimeZone;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,9 +31,6 @@ public class AppController {
 
     @FXML
     private TextField EnterCity;
-
-    @FXML
-    private Label HourlyForecast;
 
     @FXML
     private Label Temp;
@@ -77,13 +72,14 @@ public class AppController {
     private Label result_info;
 
     @FXML
-    private Label hourlyForecast;
-
-    @FXML
     private ImageView humidityIm;
 
     @FXML
     private ImageView windIm;
+
+    @FXML
+    private Label hourlyForecast;
+
 
     @FXML
     private ImageView pressureIm;
@@ -93,7 +89,13 @@ public class AppController {
     private ImageView magnifier;
 
     @FXML
-    void OnClickMethod(ActionEvent event) {
+    private ScrollPane hForecast;
+
+    @FXML
+    private ScrollBar hForecastScroll;
+
+    @FXML
+    void OnClickMethod() {
         /*EnterButton.setText("Clicked");*/               // ТОЧНО НУЖНО????
         database.setNameOfCity(EnterCity.getText());
         result_info.setText("Ожидайте..."); //!!!!!!!!!!!!ДОБАВЬ ТАКУЮ НАДПИСЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -110,7 +112,7 @@ public class AppController {
                     humidity.setText( (database.getCurWeatherData().getHumidity()) + "%");
                     pressure.setText((database.getCurWeatherData().getPressure()) + " gPa");
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd MM HH:mm z"); // какой формат нужен, выбераем
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM HH:mm z"); // какой формат нужен, выбераем
                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
                     curTime.setText("Сейчас " + (sdf.format(database.getCurWeatherData().getTime())));
                     humidityIm.getImage();
@@ -127,23 +129,32 @@ public class AppController {
                     condition.setText(database.getCur_Condition());
 
                     if /*((Objects.equals(curCond, "Clear")) &*/ (Objects.equals(partOfDay, "night")) {
-                        mainIm.setImage(new Image("clearnight.jpg"));
+                        mainIm.setImage(new Image("night.jpg"));
                         mainIcon.setImage(new Image("01n.png"));
                     }
 
                     if ((Objects.equals(curCond, "Clear")) & (Objects.equals(partOfDay, "day"))) {
-                        mainIm.setImage(new Image("clear.jpg"));
+                        mainIm.setImage(new Image("clear2.jpg"));
                         mainIcon.setImage(new Image("01d.png"));
                     }
                     if (Objects.equals(curCond, "Clouds") & (Objects.equals(partOfDay, "day"))) {
-                        mainIm.setImage(new Image("clouds.jpg"));
+                        mainIm.setImage(new Image("clouds1.jpg"));
                         mainIcon.setImage(new Image("02d.png"));
                     }
-                /*for (int i=0; i<48; i++) {
-                    float hCast = database.getHourlyForecast()[i].getTemp();
-                    hourlyForecast.getText(hCast);
+                    if (Objects.equals(curCond, "Rain") & (Objects.equals(partOfDay, "day"))) {
+                        mainIm.setImage(new Image("rain.jpg"));
+                        mainIcon.setImage(new Image("09d.png"));
+                    }
+                    hForecastScroll.valueProperty().addListener(event -> {
+                        for (int i=0; i<48; i++) {
+                            float hCast;
+                            hCast = database.getHourlyForecast()[i].getTemp();
 
-                }*/
+
+                        }
+                    });
+
+
                     result_info.setText("");
                 }
                 else{
