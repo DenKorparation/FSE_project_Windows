@@ -114,7 +114,7 @@ public class AppController {
 
                     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM HH:mm z"); // какой формат нужен, выбераем
                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
-                    curTime.setText("Сейчас " + (sdf.format(database.getCurWeatherData().getTime())));
+                    curTime.setText("Состояние на  " + (sdf.format(database.getCurWeatherData().getTime())));
                     humidityIm.getImage();
                     humidityIm.setImage(new Image("humidityIm.png"));
                     windIm.getImage();
@@ -128,22 +128,42 @@ public class AppController {
                     partOfDay = database.getPartOfDay();
                     condition.setText(database.getCur_Condition());
 
-                    if /*((Objects.equals(curCond, "Clear")) &*/ (Objects.equals(partOfDay, "night")) {
+                    if ((Objects.equals(curCond, "Clear"))  & (Objects.equals(partOfDay, "night"))) {
                         mainIm.setImage(new Image("night.jpg"));
                         mainIcon.setImage(new Image("01n.png"));
                     }
+                    if ((Objects.equals(curCond, "Clouds")) & (Objects.equals(partOfDay, "night"))) {
+                        mainIm.setImage(new Image("night.jpg"));
+                        mainIcon.setImage(new Image("04n.png"));
+                    }
 
                     if ((Objects.equals(curCond, "Clear")) & (Objects.equals(partOfDay, "day"))) {
-                        mainIm.setImage(new Image("clear2.jpg"));
+                        mainIm.setImage(new Image("clear.jpg"));
                         mainIcon.setImage(new Image("01d.png"));
                     }
+                    if ((Objects.equals(curCond, "Fog")) & (Objects.equals(partOfDay, "day"))) {
+                        mainIm.setImage(new Image("fog.jpg"));
+                        mainIcon.setImage(new Image("50d.png"));
+                    }
+                    if ((Objects.equals(curCond, "Fog")) & (Objects.equals(partOfDay, "night"))) {
+                        mainIm.setImage(new Image("fog.jpg"));
+                        mainIcon.setImage(new Image("50n.png"));
+                    }
                     if (Objects.equals(curCond, "Clouds") & (Objects.equals(partOfDay, "day"))) {
-                        mainIm.setImage(new Image("clouds1.jpg"));
+                        mainIm.setImage(new Image("clouds.jpg"));
                         mainIcon.setImage(new Image("02d.png"));
                     }
-                    if (Objects.equals(curCond, "Rain") & (Objects.equals(partOfDay, "day"))) {
+                    if (Objects.equals(curCond, "Rain") || (Objects.equals(curCond, "Drizzle"))) {
                         mainIm.setImage(new Image("rain.jpg"));
                         mainIcon.setImage(new Image("09d.png"));
+                    }
+                    if (Objects.equals(curCond, "Snow")) {
+                        mainIm.setImage(new Image("snow.jpg"));
+                        mainIcon.setImage(new Image("13d.png"));
+                    }
+                    if (Objects.equals(curCond, "Thunderstorm")) {
+                        mainIm.setImage(new Image("thunder.jpg"));
+                        mainIcon.setImage(new Image("11d.png"));
                     }
                     hForecastScroll.valueProperty().addListener(event -> {
                         for (int i=0; i<48; i++) {

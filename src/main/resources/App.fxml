@@ -11,6 +11,7 @@
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.AppController">
@@ -26,16 +27,16 @@
          <font>
             <Font name="Malgun Gothic" size="18.0" />
          </font></TextField>
-      <ImageView fx:id="mainIm" fitHeight="389.0" fitWidth="517.0" layoutX="28.0" layoutY="65.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mainIm" fitHeight="366.0" fitWidth="523.0" layoutX="28.0" layoutY="65.0" opacity="0.84" pickOnBounds="true" preserveRatio="true">
          <effect>
-            <BoxBlur height="2.0" width="2.0" />
+            <BoxBlur height="1.0" width="1.0" />
          </effect>
       </ImageView>
       <Label fx:id="lbl" layoutX="33.0" layoutY="59.0" prefHeight="39.0" prefWidth="235.0" text="Погода в" textFill="#ffffffd9">
          <font>
             <Font name="Malgun Gothic Bold" size="18.0" />
          </font></Label>
-      <Label fx:id="Temp" alignment="CENTER_RIGHT" layoutX="43.0" layoutY="118.0" prefHeight="80.0" prefWidth="172.0" text="Temp" textAlignment="RIGHT" textFill="#ffffffd9">
+      <Label fx:id="Temp" alignment="CENTER_RIGHT" layoutX="33.0" layoutY="118.0" prefHeight="80.0" prefWidth="199.0" text="Temp" textAlignment="RIGHT" textFill="#ffffffd9">
          <font>
             <Font name="Malgun Gothic" size="55.0" />
          </font></Label>
@@ -48,7 +49,7 @@
          <font>
             <Font name="Malgun Gothic" size="18.0" />
          </font></Label>
-      <Label fx:id="humidity" layoutX="213.0" layoutY="186.0" prefHeight="44.0" prefWidth="68.0" textFill="#ffffffd9">
+      <Label fx:id="humidity" layoutX="220.0" layoutY="186.0" prefHeight="44.0" prefWidth="68.0" textFill="#ffffffd9">
          <font>
             <Font name="Malgun Gothic" size="18.0" />
          </font></Label>
@@ -60,7 +61,6 @@
          <font>
             <Font name="Malgun Gothic" size="14.0" />
          </font></Label>
-      <AnchorPane layoutX="33.0" layoutY="239.0" opacity="0.59" prefHeight="1.0" prefWidth="494.0" style="-fx-background-color: #808080;" />
       <Accordion />
       <Label fx:id="condition" layoutX="288.0" layoutY="142.0" prefHeight="22.0" prefWidth="122.0" textFill="#ffffffe0">
          <font>
@@ -70,7 +70,7 @@
          <font>
             <Font name="Malgun Gothic" size="12.0" />
          </font></Label>
-      <ImageView fx:id="humidityIm" fitHeight="44.0" fitWidth="44.0" layoutX="165.0" layoutY="185.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="humidityIm" fitHeight="44.0" fitWidth="44.0" layoutX="171.0" layoutY="186.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="windIm" fitHeight="44.0" fitWidth="44.0" layoutX="41.0" layoutY="186.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="pressureIm" fitHeight="44.0" fitWidth="44.0" layoutX="281.0" layoutY="187.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="mainIcon" fitHeight="68.0" fitWidth="68.0" layoutX="213.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" />
@@ -84,7 +84,8 @@
          </opaqueInsets>
       </ScrollPane>
       <ScrollBar fx:id="hForecastScroll" layoutX="60.0" layoutY="418.0" prefHeight="22.0" prefWidth="453.0" />
-      <Label fx:id="hourlyForecast" layoutX="78.0" layoutY="258.0" prefHeight="142.0" prefWidth="420.0" text="Label" />
+      <Label fx:id="hourlyForecast" layoutX="129.0" layoutY="481.0" prefHeight="142.0" prefWidth="420.0" />
+      <Line endX="399.0" layoutX="137.0" layoutY="242.0" startX="-100.0" stroke="#c3bbbb" />
       
    </children>
 </AnchorPane>
