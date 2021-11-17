@@ -3,8 +3,11 @@ package com.uni;
 import java.io.FileNotFoundException;
 import java.io.File;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -106,7 +109,10 @@ public class AppController {
                     windSpeed.setText((database.getCurWeatherData().getWindSpeed()) + " m/s");
                     humidity.setText( (database.getCurWeatherData().getHumidity()) + "%");
                     pressure.setText((database.getCurWeatherData().getPressure()) + " gPa");
-                    curTime.setText("Сейчас " + (database.getCurWeatherData().getTime()));
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd MM HH:mm z"); // какой формат нужен, выбераем
+                    sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
+                    curTime.setText("Сейчас " + (sdf.format(database.getCurWeatherData().getTime())));
                     humidityIm.getImage();
                     humidityIm.setImage(new Image("humidityIm.png"));
                     windIm.getImage();
