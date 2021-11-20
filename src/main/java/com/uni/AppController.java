@@ -96,9 +96,8 @@ public class AppController {
 
     @FXML
     void OnClickMethod() {
-        /*EnterButton.setText("Clicked");*/               // ТОЧНО НУЖНО????
-        database.setNameOfCity(EnterCity.getText());
-        result_info.setText("Ожидайте..."); //!!!!!!!!!!!!ДОБАВЬ ТАКУЮ НАДПИСЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        result_info.setText("Ожидайте...");
         Thread t = new Thread(() -> {
             database.request();
 
@@ -178,7 +177,7 @@ public class AppController {
                     result_info.setText("");
                 }
                 else{
-                    //do someting
+                    result_info.setText("Такого города не сущетсвует");
                 }
 
             });
