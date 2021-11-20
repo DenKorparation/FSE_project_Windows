@@ -96,7 +96,7 @@ public class AppController {
 
     @FXML
     void OnClickMethod() {
-
+        database.setNameOfCity(EnterCity.getText());
         result_info.setText("Ожидайте...");
         Thread t = new Thread(() -> {
             database.request();
