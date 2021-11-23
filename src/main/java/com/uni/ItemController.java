@@ -36,7 +36,13 @@ public class ItemController implements Initializable {
     @FXML
     private Button MoreInfo;
 
+    private int Index;
+
+    InfoClass moreInfoController;
+
+
     public void update(int Index){
+        this.Index = Index;
         temp.setText("Температура " + String.valueOf(database.getHourlyForecast()[Index].getTemp()) + "°");
         System.out.println(database.getHourlyForecast()[Index].getIdIcon() + ".png");
         icon.setImage(new Image(database.getHourlyForecast()[Index].getIdIcon() + ".png"));
@@ -56,7 +62,10 @@ public class ItemController implements Initializable {
         Parent root = loader.load();
         stage.setScene(new Scene(root));
         stage.show();
+        moreInfoController = loader.getController();
+        moreInfoController.update(Index);
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
