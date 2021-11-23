@@ -89,7 +89,7 @@ public class AppController {
                     String temp = (database.getCurWeatherData().getTemp()) +  "°";
                     Temp.setText(temp);
                     feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
-                    windSpeed.setText((database.getCurWeatherData().getWindSpeed()) + " m/s");
+                    windSpeed.setText((database.getCurWeatherData().getWindSpeed()) + " м/c");
                     humidity.setText( (database.getCurWeatherData().getHumidity()) + "%");
                     pressure.setText((database.getCurWeatherData().getPressure()) + " gPa");
 
