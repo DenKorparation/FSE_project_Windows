@@ -7,6 +7,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,8 +23,14 @@ public class Database {
     private String cur_Condition;
     private String partOfDay;
     private boolean isCorrectData;
+    private Image map;
+    private double cityLongitude; //долгота
+    private double cityLatitude; //широта
+    private String mapLayer;
+
 
     public Database(){
+        mapLayer = "pressure_new";
         isCorrectData = false;
         partOfDay = "day";
         nameOfCity = "";
@@ -39,9 +47,19 @@ public class Database {
 
         reqCurWeather("https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&units=metric&appid=" + API_KEYS);
         if (isCorrectData) {
+            int zoom, xCoord, yCoord;
+            zoom = 2;
+            xCoord = (int) ((cityLatitude + 180.d) / 360.d * Math.pow(2, zoom));
+            yCoord = (int) (-(cityLongitude - 90.d) / 180.d * Math.pow(2, zoom));
+            reqMap("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEYS);
             reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&units=metric&appid=" + API_KEYS);
             reqDailyForecast("https://api.openweathermap.org/data/2.5/forecast/daily?q=" + nameOfCity + "&cnt=7&units=metric&appid=" + API_KEYS);
         }
+    }
+
+    private void reqMap(String url) {
+        System.out.println(url);
+        map = new Image(url);
     }
 
     private void reqCurWeather(String url){
@@ -69,6 +87,10 @@ public class Database {
                         cur_Condition = "Fog";
                     else
                         cur_Condition = curWeatherData.getCondition();
+
+                    nameOfCity = obj.getString("name");
+                    cityLatitude = obj.getJSONObject("coord").getDouble("lat");
+                    cityLongitude = obj.getJSONObject("coord").getDouble("lon");
                 }
                 else
                     isCorrectData = false;
@@ -185,5 +207,17 @@ public class Database {
 
     public String getCur_Condition() {
         return cur_Condition;
+    }
+
+    public Image getMap() {
+        return map;
+    }
+
+    public double getCityLongitude() {
+        return cityLongitude;
+    }
+
+    public double getCityLatitude() {
+        return cityLatitude;
     }
 }

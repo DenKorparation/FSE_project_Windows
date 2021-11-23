@@ -80,7 +80,8 @@ public class AppController {
     @FXML
     private Label hourlyForecast;
 
-
+    @FXML
+    private ImageView map;
     @FXML
     private ImageView pressureIm;
     @FXML
@@ -173,6 +174,7 @@ public class AppController {
                         }
                     });
 
+                    map.setImage(database.getMap());
 
                     result_info.setText("");
                 }
