@@ -16,6 +16,7 @@ public class Database {
     private static final int numberOfHours = 48;
     private static final int numberOfDays = 7;
     private  static  final String API_KEYS = "c76548e17d6b42b99e631401cd0e0f75";
+    private static final String MAP_API_KEYS = "LOSBNUlvpwa89u2MXMh5EusanAKtrRXh";
     private DataOfWeather curWeatherData = new DataOfWeather();
     private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
     private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
@@ -24,6 +25,7 @@ public class Database {
     private String partOfDay;
     private boolean isCorrectData;
     private Image map;
+    private Image weatherMap;
     private double cityLongitude; //долгота
     private double cityLatitude; //широта
     private String mapLayer;
@@ -47,22 +49,33 @@ public class Database {
 
         reqCurWeather("https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&units=metric&appid=" + API_KEYS);
         if (isCorrectData) {
-            int zoom, xCoord, yCoord;
-            zoom = 2;
-            xCoord = (int) ((cityLatitude + 180.d) / 360.d * Math.pow(2, zoom));
-            yCoord = (int) (-(cityLongitude - 90.d) / 180.d * Math.pow(2, zoom));
-            reqMap("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEYS);
+            reqMap();
             reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&units=metric&appid=" + API_KEYS);
             reqDailyForecast("https://api.openweathermap.org/data/2.5/forecast/daily?q=" + nameOfCity + "&cnt=7&units=metric&appid=" + API_KEYS);
         }
     }
 
-    private void reqMap(String url) {
-        System.out.println(url);
-        map = new Image(url);
+    private void reqMap() {
+        int zoom, xCoord, yCoord;
+        zoom = 2;
+        xCoord = (int) ((cityLatitude + 180.d) / 360.d * Math.pow(2, zoom));
+        yCoord = (int) (-(cityLongitude - 90.d) / 180.d * Math.pow(2, zoom));
+        weatherMap = new Image("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEYS);
+        map = new Image("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEYS + "&boundingBox=" +
+                Double.toString(-yCoord * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString(xCoord * 360.d / Math.pow(2, zoom) - 180.d) + "," +
+                Double.toString(-(yCoord + 1) * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString((xCoord + 1) * 360.d / Math.pow(2, zoom) - 180.d) +
+                "&zoom=" + Integer.toString(zoom) + "&size=256,256");
+
+        System.out.println("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEYS);
+
+        System.out.println("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEYS + "&boundingBox=" +
+                Double.toString(-yCoord * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString(xCoord * 360.d / Math.pow(2, zoom) - 180.d) + "," +
+                Double.toString(-(yCoord + 1) * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString((xCoord + 1) * 360.d / Math.pow(2, zoom) - 180.d) +
+                "&zoom=" + Integer.toString(zoom) + "&size=256,256");
     }
 
     private void reqCurWeather(String url){
+        System.out.println(url);
         try {
             isCorrectData = true;
             String output = getUrlContent(url);
@@ -103,6 +116,7 @@ public class Database {
     }
 
     private void reqHourlyForecast(String url){
+        System.out.println(url);
         try{
             String output = getUrlContent(url);
             if(!output.isEmpty()){
@@ -132,6 +146,7 @@ public class Database {
     }
 
     private void reqDailyForecast(String url){
+        System.out.println(url);
         try{
             String output = getUrlContent(url);
             if(!output.isEmpty()){
@@ -219,5 +234,9 @@ public class Database {
 
     public double getCityLatitude() {
         return cityLatitude;
+    }
+
+    public Image getWeatherMap() {
+        return weatherMap;
     }
 }

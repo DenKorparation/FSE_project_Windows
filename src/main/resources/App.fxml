@@ -72,6 +72,7 @@
       <Label fx:id="hourlyForecast" layoutX="129.0" layoutY="481.0" prefHeight="142.0" prefWidth="420.0" />
       <Line endX="399.0" layoutX="137.0" layoutY="242.0" startX="-100.0" stroke="#c3bbbb" />
       <ImageView fx:id="map" fitHeight="256.0" fitWidth="352.0" layoutX="708.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="weatherMap" fitHeight="256.0" fitWidth="352.0" layoutX="708.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" />
       
    </children>
 </AnchorPane>

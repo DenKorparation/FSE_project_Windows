@@ -83,6 +83,8 @@ public class AppController {
     @FXML
     private ImageView map;
     @FXML
+    private ImageView weatherMap;
+    @FXML
     private ImageView pressureIm;
     @FXML
     private ImageView mainIcon;
@@ -174,6 +176,7 @@ public class AppController {
                         }
                     });
 
+                    weatherMap.setImage(database.getWeatherMap());
                     map.setImage(database.getMap());
 
                     result_info.setText("");
