@@ -93,7 +93,7 @@ public class AppController {
                     humidity.setText( (database.getCurWeatherData().getHumidity()) + "%");
                     pressure.setText((database.getCurWeatherData().getPressure()) + " gPa");
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM HH:mm z"); // какой формат нужен, выбераем
+                    SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd.MM HH:mm z"); // какой формат нужен, выбераем
                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
                     curTime.setText("Состояние на  " + (sdf.format(database.getCurWeatherData().getTime())));
                     humidityIm.getImage();

@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class ItemController implements Initializable {
         icon.setImage(new Image(database.getHourlyForecast()[Index].getIdIcon() + ".png"));
         feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getHourlyForecast()[Index].getFeelsLikeTemp())) + "°" );
         /*wind.setText(String.valueOf(database.getHourlyForecast()[Index].getWindSpeed()));*/
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM HH:mm z");
+        SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
        /* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*/
         time.setText((sdf.format(database.getHourlyForecast()[Index].getTime())));
         curCond.setText(database.getHourlyForecast()[Index].getCondition());
@@ -57,6 +58,7 @@ public class ItemController implements Initializable {
     void ToMoreInfo(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/info.fxml"));
         Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("More Info");
         stage.setResizable(false);
         Parent root = loader.load();
