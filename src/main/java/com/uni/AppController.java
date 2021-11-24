@@ -70,12 +70,19 @@ public class AppController {
     @FXML
     private ImageView magnifier;
     @FXML
+    private AnchorPane DailyWeatherList;
+    /*@FXML
+    private ScrollBar scroll;*/
+    @FXML
     private AnchorPane hourlyWeatherList;
     @FXML
     private ScrollBar hForecastScroll;
 
     private Node[] nodeHourly = new Node[48];
     private  ItemController[] nodesHourlyController = new ItemController[48];
+    private Node[] nodeDaily = new Node[7];
+    private  dailyItemController[] nodesDailyController = new dailyItemController[7];
+
     @FXML
     void OnClickMethod() {
         database.setNameOfCity(EnterCity.getText());
@@ -93,7 +100,7 @@ public class AppController {
                     humidity.setText( (database.getCurWeatherData().getHumidity()) + "%");
                     pressure.setText((database.getCurWeatherData().getPressure()) + " gPa");
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd.MM HH:mm z"); // какой формат нужен, выбераем
+                    SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM HH:mm z"); // какой формат нужен, выбераем
                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
                     curTime.setText("Состояние на  " + (sdf.format(database.getCurWeatherData().getTime())));
                     humidityIm.getImage();
@@ -148,8 +155,13 @@ public class AppController {
                     }
 
                     for (int i = 0; i < nodeHourly.length; i++){
-                        nodesHourlyController[i].update(i);
+                        nodesHourlyController[i].updateHourly(i);
                     }
+
+                    for (int i = 0; i < nodeDaily.length; i++){
+                        nodesDailyController[i].updateDaily(i);
+                    }
+
 
                     result_info.setText("");
                 }
@@ -174,8 +186,18 @@ public class AppController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
 
+        }
+        for (int i=0; i<7; i++) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/DailyItem.fxml"));
+                nodeDaily[i] = loader.load();
+                nodesDailyController[i] = loader.getController();
+                DailyWeatherList.getChildren().add(nodeDaily[i]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         hForecastScroll.setMin(0);
         hForecastScroll.setMax(1);
@@ -189,6 +211,18 @@ public class AppController {
                 }
             }
         });
+         /*scroll.setMin(0);
+         scroll.setMax(1);
+         scroll.setValue(0);
+         scroll.valueProperty().addListener(new ChangeListener<Number>() {
+             @Override
+             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                 for (int i = 0; i < nodeDaily.length; i++) {
+                     double node_width = nodeDaily[i].getLayoutBounds().getWidth();
+                     nodeDaily[i].setTranslateX(node_width * 1.2 * i - (node_width * 1.2 * nodeDaily.length - 0.2 * node_width - DailyWeatherList.getLayoutBounds().getWidth()) * scroll.getValue());
+                 }
+             }
+         });*/
     }
 
     public void postInit(){
@@ -197,7 +231,16 @@ public class AppController {
             AnchorPane.setTopAnchor(nodeHourly[i], (hourlyWeatherList.getHeight() - nodeHourly[i].getLayoutBounds().getHeight()) / 2);
             System.out.println(hourlyWeatherList.getHeight() - nodeHourly[i].getLayoutBounds().getHeight() / 2);
         }
-        Rectangle clip = new Rectangle(hourlyWeatherList.getWidth(), hourlyWeatherList.getHeight());
-        hourlyWeatherList.setClip(clip);
+        Rectangle hclip = new Rectangle(hourlyWeatherList.getWidth(), hourlyWeatherList.getHeight());
+        hourlyWeatherList.setClip(hclip);
+
+        for(int i = 0; i < nodeDaily.length; i++) {
+            nodeDaily[i].setTranslateX(nodeDaily[i].getLayoutBounds().getWidth() * 1.1 * i);
+            AnchorPane.setTopAnchor(nodeDaily[i], (DailyWeatherList.getHeight() - nodeDaily[i].getLayoutBounds().getHeight()) / 2);
+            System.out.println(DailyWeatherList.getHeight() - nodeDaily[i].getLayoutBounds().getHeight() / 2);
+        }
+        Rectangle dclip = new Rectangle(DailyWeatherList.getWidth(), DailyWeatherList.getHeight());
+        DailyWeatherList.setClip(dclip);
     }
+
 }

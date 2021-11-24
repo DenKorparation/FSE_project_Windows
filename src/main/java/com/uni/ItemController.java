@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -35,6 +37,8 @@ public class ItemController implements Initializable {
     @FXML
     private Label curCond;
     @FXML
+    private Pane pane;
+    @FXML
     private Button MoreInfo;
 
     private int Index;
@@ -42,22 +46,40 @@ public class ItemController implements Initializable {
     InfoClass moreInfoController;
 
 
-    public void update(int Index){
+    public void updateHourly(int Index){
         this.Index = Index;
         temp.setText("Температура " + String.valueOf(database.getHourlyForecast()[Index].getTemp()) + "°");
         System.out.println(database.getHourlyForecast()[Index].getIdIcon() + ".png");
         icon.setImage(new Image(database.getHourlyForecast()[Index].getIdIcon() + ".png"));
         feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getHourlyForecast()[Index].getFeelsLikeTemp())) + "°" );
-        /*wind.setText(String.valueOf(database.getHourlyForecast()[Index].getWindSpeed()));*/
         SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
        /* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*/
         time.setText((sdf.format(database.getHourlyForecast()[Index].getTime())));
         curCond.setText(database.getHourlyForecast()[Index].getCondition());
     }
+
+    /*public void updateDaily(int Index){
+    this.Index = Index;
+        temp.setText("Температура " + String.valueOf(database.getDailyForecast()[Index].getTemp()) + "°");
+        System.out.println(database.getDailyForecast()[Index].getIdIcon() + ".png");
+        icon.setImage(new Image(database.getDailyForecast()[Index].getIdIcon() + ".png"));
+        feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getDailyForecast()[Index].getFeelsLikeTemp())) + "°" );
+        SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
+        *//* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*//*
+        time.setText((sdf.format(database.getDailyForecast()[Index].getTime())));
+        curCond.setText(database.getDailyForecast()[Index].getCondition());
+    }*/
+
+  /*  public void FillColorD(){
+        //pane.setBackground(Color.BLUEVIOLET);
+        pane.setStyle("-fx-background-color: #1d3d4e");
+    }*/
+
     @FXML
     void ToMoreInfo(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/info.fxml"));
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("info.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("More Info");
         stage.setResizable(false);
@@ -65,7 +87,7 @@ public class ItemController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
         moreInfoController = loader.getController();
-        moreInfoController.update(Index);
+        moreInfoController.updateHourly(Index);
     }
 
 

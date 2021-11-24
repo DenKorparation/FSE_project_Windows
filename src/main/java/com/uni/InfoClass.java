@@ -26,7 +26,7 @@ public class InfoClass {
     @FXML
     private Label hwindspeed;
 
-    public void update(int Index){
+    public void updateHourly(int Index){
         hHumidity.setText("Влажность  " + String.valueOf(database.getHourlyForecast()[Index].getHumidity()) + "%");
         hpressure.setText("Давление " + String.valueOf(database.getHourlyForecast()[Index].getPressure() + " gPa"));
         hwindspeed.setText("Скорость ветра " + String.valueOf(database.getHourlyForecast()[Index].getWindSpeed() + " м/с"));

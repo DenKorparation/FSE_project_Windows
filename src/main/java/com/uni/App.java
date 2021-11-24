@@ -23,7 +23,7 @@ public class App extends Application {
         primaryStage.setTitle("Gismeteostats");
         primaryStage.setScene(new Scene(root, 1100 ,  650));
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image("https://ds-blobs-2.cdn.devapps.ru/6380085.png"));
+        primaryStage.getIcons().add(new Image("https://www.1rre.ru/wp-content/uploads/2021/04/f4a3fbd4db51edf098a710dc05c3c53b.jpg"));
         primaryStage.show();
         mainSceneController.postInit();
     }
