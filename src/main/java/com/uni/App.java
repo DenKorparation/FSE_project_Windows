@@ -1,26 +1,31 @@
 package com.uni;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
 public class App extends Application {
-
+    AppController mainSceneController = new AppController();
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/App.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/App.fxml"));
+        Parent root = loader.load();
+        mainSceneController = loader.getController();
         primaryStage.setTitle("Gismeteostats");
         primaryStage.setScene(new Scene(root, 1100 ,  650));
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image("https://ds-blobs-2.cdn.devapps.ru/6380085.png"));
+        primaryStage.getIcons().add(new Image("https://www.1rre.ru/wp-content/uploads/2021/04/f4a3fbd4db51edf098a710dc05c3c53b.jpg"));
         primaryStage.show();
+        mainSceneController.postInit();
     }
 
 
