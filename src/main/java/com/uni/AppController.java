@@ -106,7 +106,7 @@ public class AppController {
 
             Platform.runLater(() -> {
                 if(database.isCorrectData()){
-                    lbl.setText("Погода в " + EnterCity.getText());
+                    lbl.setText("Погода в " + database.getNameOfCity());
                     String temp = (database.getCurWeatherData().getTemp()) +  "°";
                     Temp.setText(temp);
                     feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
@@ -128,7 +128,7 @@ public class AppController {
                     mainIcon.getImage();
                     curCond = database.getCur_Condition();
                     partOfDay = database.getPartOfDay();
-                    condition.setText(database.getCur_Condition());
+                    condition.setText(database.getCurWeatherData().getDescription());
 
                     if ((Objects.equals(curCond, "Clear"))  & (Objects.equals(partOfDay, "night"))) {
                         mainIm.setImage(new Image("night.jpg"));
@@ -175,9 +175,9 @@ public class AppController {
 
                         }
                     });
-
                     weatherMap.setImage(database.getWeatherMap());
                     map.setImage(database.getMap());
+
 
                     result_info.setText("");
                 }
