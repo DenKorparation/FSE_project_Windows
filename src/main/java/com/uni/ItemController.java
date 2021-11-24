@@ -55,7 +55,7 @@ public class ItemController implements Initializable {
         SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
        /* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*/
         time.setText((sdf.format(database.getHourlyForecast()[Index].getTime())));
-        curCond.setText(database.getHourlyForecast()[Index].getCondition());
+        curCond.setText(database.getHourlyForecast()[Index].getDescription());
     }
 
     /*public void updateDaily(int Index){

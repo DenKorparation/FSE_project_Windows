@@ -37,7 +37,7 @@ public class dailyItemController implements Initializable {
         SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
         /* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*/
         time.setText((sdf.format(database.getDailyForecast()[Index].getTime())));
-        curCond.setText(database.getDailyForecast()[Index].getCondition());
+        curCond.setText(database.getDailyForecast()[Index].getDescription());
         windspeed.setText("Скорость ветра " + String.valueOf(database.getDailyForecast()[Index].getWindSpeed()));
     }
 
