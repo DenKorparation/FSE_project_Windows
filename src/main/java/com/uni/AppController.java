@@ -92,7 +92,7 @@ public class AppController {
 
             Platform.runLater(() -> {
                 if(database.isCorrectData()){
-                    lbl.setText("Погода в " + EnterCity.getText());
+                    lbl.setText("Город " + EnterCity.getText());
                     String temp = (database.getCurWeatherData().getTemp()) +  "°";
                     Temp.setText(temp);
                     feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");

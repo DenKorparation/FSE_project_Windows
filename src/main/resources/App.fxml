@@ -76,7 +76,7 @@
       <ScrollBar fx:id="hForecastScroll" layoutX="28.0" layoutY="402.0" prefHeight="22.0" prefWidth="523.0" />
       <Line endX="399.0" layoutX="137.0" layoutY="242.0" startX="-100.0" stroke="#c3bbbb" />
       <AnchorPane fx:id="hourlyWeatherList" layoutX="33.0" layoutY="242.0" prefHeight="168.0" prefWidth="512.0" />
-      <AnchorPane fx:id="DailyWeatherList" layoutX="4.0" layoutY="460.0" prefHeight="169.0" prefWidth="1098.0" />
+      <AnchorPane fx:id="DailyWeatherList" layoutX="28.0" layoutY="460.0" prefHeight="169.0" prefWidth="1074.0" />
       <Label layoutX="28.0" layoutY="423.0" prefHeight="37.0" prefWidth="327.0" text="Прогноз на 7 дней">
          <font>
             <Font name="Malgun Gothic Bold" size="21.0" />
