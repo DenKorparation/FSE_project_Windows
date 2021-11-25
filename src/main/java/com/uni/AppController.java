@@ -71,8 +71,18 @@ public class AppController {
     private ImageView magnifier;
     @FXML
     private AnchorPane DailyWeatherList;
-    /*@FXML
-    private ScrollBar scroll;*/
+    @FXML
+    private ImageView Map;
+    @FXML
+    private Button cloudsMap;
+    @FXML
+    private Button presipitMap;
+    @FXML
+    private Button pressureMap;
+    @FXML
+    private Button tempMap;
+    @FXML
+    private Button windspeedMap;
     @FXML
     private AnchorPane hourlyWeatherList;
     @FXML
@@ -168,6 +178,8 @@ public class AppController {
                 else{
                     result_info.setText("Такого города не сущетсвует");
                 }
+                Map.setImage(database.getMap());
+
 
             });
         });
@@ -190,7 +202,7 @@ public class AppController {
         }
         for (int i=0; i<7; i++) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/DailyItem.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/dailyItem.fxml"));
                 nodeDaily[i] = loader.load();
                 nodesDailyController[i] = loader.getController();
                 DailyWeatherList.getChildren().add(nodeDaily[i]);
@@ -211,18 +223,6 @@ public class AppController {
                 }
             }
         });
-         /*scroll.setMin(0);
-         scroll.setMax(1);
-         scroll.setValue(0);
-         scroll.valueProperty().addListener(new ChangeListener<Number>() {
-             @Override
-             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                 for (int i = 0; i < nodeDaily.length; i++) {
-                     double node_width = nodeDaily[i].getLayoutBounds().getWidth();
-                     nodeDaily[i].setTranslateX(node_width * 1.2 * i - (node_width * 1.2 * nodeDaily.length - 0.2 * node_width - DailyWeatherList.getLayoutBounds().getWidth()) * scroll.getValue());
-                 }
-             }
-         });*/
     }
 
     public void postInit(){

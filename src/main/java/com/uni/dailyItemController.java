@@ -24,27 +24,32 @@ public class dailyItemController implements Initializable {
     @FXML
     private Label windspeed;
     @FXML
+    private ImageView TempIm;
+    @FXML
     private ImageView icon;
 
     private int Index;
 
     public void updateDaily(int Index){
         this.Index = Index;
-        temp.setText("Температура " + String.valueOf(database.getDailyForecast()[Index].getTemp()) + "°");
+        TempIm.getImage();
+        TempIm.setImage(new Image("temp.png"));
+        temp.setText(String.valueOf(database.getDailyForecast()[Index].getTempDay()) + "°/ " + (database.getDailyForecast()[Index].getTempNight() + "°"));
         System.out.println(database.getDailyForecast()[Index].getIdIcon() + ".png");
         icon.setImage(new Image(database.getDailyForecast()[Index].getIdIcon() + ".png"));
-        feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getDailyForecast()[Index].getFeelsLikeTemp())) + "°" );
+        feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getDailyForecast()[Index].getFeelsLikeTempDay())) + "°/ " + (database.getDailyForecast()[Index].getFeelsLikeTempNight()) + "°");
         SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
         /* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*/
         time.setText((sdf.format(database.getDailyForecast()[Index].getTime())));
         curCond.setText(database.getDailyForecast()[Index].getDescription());
-        windspeed.setText("Скорость ветра " + String.valueOf(database.getDailyForecast()[Index].getWindSpeed()));
+        windspeed.setText("Скорость ветра " + String.valueOf(database.getDailyForecast()[Index].getWindSpeed()) + "м/с");
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        temp.setText(String.valueOf(0.0) + "°");
+
+        temp.setText(Double.valueOf(0.0) + "°");
         /* wind.setText(String.valueOf(0.0));*/
         icon.setImage(new Image("01d.png"));
     }
