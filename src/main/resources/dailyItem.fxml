@@ -6,35 +6,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxWidth="-Infinity" minWidth="-Infinity" opacity="0.8" prefHeight="185.0" prefWidth="135.0" style="-fx-background-color: #1d3d4e; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.dailyItemController">
+<AnchorPane maxWidth="-Infinity" minWidth="-Infinity" opacity="0.8" prefHeight="183.0" prefWidth="135.0" style="-fx-background-color: #1d3d4e; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.dailyItemController">
    <children>
-      <Label fx:id="time" alignment="CENTER" layoutX="2.0" prefHeight="17.0" prefWidth="128.0" text="Время" textFill="#fcfafa">
+      <Label fx:id="time" alignment="CENTER" layoutX="2.0" prefHeight="17.0" prefWidth="128.0" text="Время" textAlignment="CENTER" textFill="#fcfafa">
          <font>
             <Font name="Malgun Gothic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="temp" layoutX="49.0" layoutY="18.0" prefHeight="18.0" prefWidth="82.0" text="Температура" textFill="#fcfafa">
+      <Label fx:id="temp" layoutX="45.0" layoutY="32.0" prefHeight="18.0" prefWidth="89.0" text="Температура" textFill="#fcfafa">
          <font>
             <Font name="Malgun Gothic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="feelsliketemp" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="39.0" prefHeight="42.0" prefWidth="97.0" text="Ощущается как" textFill="#fcfafa" wrapText="true">
+      <Label fx:id="feelsliketemp" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="48.0" prefHeight="42.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Ощущается как" textAlignment="CENTER" textFill="#fcfafa" wrapText="true">
          <font>
             <Font name="Malgun Gothic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="windspeed" alignment="CENTER" layoutX="-2.0" layoutY="163.0" prefHeight="24.0" prefWidth="138.0" text="Скорость ветра" textFill="#fcfafa" wrapText="true">
+      <Label fx:id="windspeed" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="153.0" prefHeight="36.0" prefWidth="118.0" text="Скорость ветра" textAlignment="CENTER" textFill="#fcfafa" wrapText="true">
          <font>
             <Font name="Malgun Gothic" size="13.0" />
          </font>
       </Label>
-      <ImageView fx:id="icon" fitHeight="60.0" fitWidth="60.0" layoutX="37.0" layoutY="76.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="76.0" />
-      <Label fx:id="curCond" alignment="CENTER" layoutX="4.0" layoutY="137.0" prefHeight="28.0" prefWidth="128.0" text="Текущее состояние" textFill="#fcfafa" wrapText="true">
+      <ImageView fx:id="icon" fitHeight="50.0" fitWidth="50.0" layoutX="43.0" layoutY="84.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="84.0" />
+      <Label fx:id="curCond" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="108.0" prefHeight="64.0" prefWidth="128.0" style="-fx-line-spacing: 0.0;" text="Текущее состояние" textAlignment="CENTER" textFill="#fcfafa" wrapText="true">
          <font>
             <Font name="Malgun Gothic" size="13.0" />
          </font>
       </Label>
-      <ImageView fx:id="TempIm" fitHeight="22.0" fitWidth="22.0" layoutX="22.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="TempIm" fitHeight="22.0" fitWidth="22.0" layoutX="22.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="51.0" layoutY="16.0" prefHeight="17.0" prefWidth="71.0" text="День / ночь" textAlignment="CENTER" textFill="#fcf8f8">
+         <font>
+            <Font name="Malgun Gothic" size="12.0" />
+         </font>
+      </Label>
    </children>
    <opaqueInsets>
       <Insets />

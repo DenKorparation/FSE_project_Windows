@@ -13,6 +13,7 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -66,6 +67,10 @@ public class AppController {
     @FXML
     private ImageView pressureIm;
     @FXML
+    private ImageView minus;
+    @FXML
+    private ImageView plus;
+    @FXML
     private ImageView mainIcon;
     @FXML
     private ImageView magnifier;
@@ -74,19 +79,23 @@ public class AppController {
     @FXML
     private ImageView Map;
     @FXML
-    private Button cloudsMap;
+    private Button cloudsBut;
     @FXML
-    private Button presipitMap;
+    private Button precipBut;
     @FXML
-    private Button pressureMap;
+    private Button pressureBut;
     @FXML
-    private Button tempMap;
+    private Button tempBut;
     @FXML
-    private Button windspeedMap;
+    private Button windspeedBut;
     @FXML
     private AnchorPane hourlyWeatherList;
     @FXML
     private ScrollBar hForecastScroll;
+    @FXML
+    private ImageView weatherMap;
+    @FXML
+    private Button min;
 
     private Node[] nodeHourly = new Node[48];
     private  ItemController[] nodesHourlyController = new ItemController[48];
@@ -178,8 +187,35 @@ public class AppController {
                 else{
                     result_info.setText("Такого города не сущетсвует");
                 }
+                minus.getImage();
+                plus.getImage();
+                minus.setImage(new Image("minus.png"));
+                plus.setImage(new Image("plus.png"));
                 Map.setImage(database.getMap());
+                weatherMap.setImage(database.getWeatherMap());
+                tempBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        database.setMapLayer("temp_new");
+                        database.request();
 
+                    }
+                });
+
+                plus.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        Map.getOnZoom();
+                        Map.setOnZoom(zoomEvent -> database.zoomIncrement());
+                    }
+                });
+                min.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        Map.getOnZoom();
+                        Map.setOnZoom(zoomEvent -> database.zoomDecrement());
+                    }
+                });
 
             });
         });

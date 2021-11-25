@@ -58,7 +58,7 @@ public class Database {
         }
     }
 
-    private void reqMap() {
+    public void reqMap() {
         int xCoord, yCoord;
         xCoord = (int) ((cityLongitude + 180.d) / 360.d * Math.pow(2, zoom));
         yCoord = (int) (-(cityLatitude - 90.d) / 180.d * Math.pow(2, zoom));

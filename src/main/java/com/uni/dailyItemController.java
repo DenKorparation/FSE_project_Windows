@@ -34,10 +34,12 @@ public class dailyItemController implements Initializable {
         this.Index = Index;
         TempIm.getImage();
         TempIm.setImage(new Image("temp.png"));
-        temp.setText(String.valueOf(database.getDailyForecast()[Index].getTempDay()) + "°/ " + (database.getDailyForecast()[Index].getTempNight() + "°"));
+        temp.setText(String.valueOf(database.getDailyForecast()[Index].getTempDay()) + " °/ " + (database.getDailyForecast()[Index].getTempNight() + "°"));
         System.out.println(database.getDailyForecast()[Index].getIdIcon() + ".png");
         icon.setImage(new Image(database.getDailyForecast()[Index].getIdIcon() + ".png"));
+
         feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getDailyForecast()[Index].getFeelsLikeTempDay())) + "°/ " + (database.getDailyForecast()[Index].getFeelsLikeTempNight()) + "°");
+        feelsliketemp.setLineSpacing(0.0);
         SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
         /* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*/
         time.setText((sdf.format(database.getDailyForecast()[Index].getTime())));
