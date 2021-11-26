@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import static com.uni.AppController.database;
 
@@ -43,7 +44,7 @@ public class dailyItemController implements Initializable {
         feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getDailyForecast()[Index].getFeelsLikeTempDay())) + "°/ " + (database.getDailyForecast()[Index].getFeelsLikeTempNight()) + "°");
         feelsliketemp.setLineSpacing(0.0);
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd.MM");
-        /* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*/
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));
         time.setText((sdf.format(database.getDailyForecast()[Index].getTime())));
         curCond.setText(database.getDailyForecast()[Index].getDescription());
         windspeed.setText(String.valueOf(database.getDailyForecast()[Index].getWindSpeed()) + " м/с");

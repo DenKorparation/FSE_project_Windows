@@ -52,8 +52,8 @@ public class ItemController implements Initializable {
         System.out.println(database.getHourlyForecast()[Index].getIdIcon() + ".png");
         icon.setImage(new Image(database.getHourlyForecast()[Index].getIdIcon() + ".png"));
         feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getHourlyForecast()[Index].getFeelsLikeTemp())) + "°" );
-        SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));
+        SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm ");
+        /*sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"))*/;
         time.setText((sdf.format(database.getHourlyForecast()[Index].getTime())));
         curCond.setText(database.getHourlyForecast()[Index].getDescription());
     }
