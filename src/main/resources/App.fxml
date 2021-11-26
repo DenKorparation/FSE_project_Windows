@@ -110,8 +110,7 @@
       </Button>
       <ImageView fx:id="plus" fitHeight="50.0" fitWidth="50.0" layoutX="985.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="minus" fitHeight="50.0" fitWidth="50.0" layoutX="984.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="weatherMap" fitHeight="260.0" fitWidth="260.0" layoutX="717.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="min" layoutX="983.0" layoutY="180.0" mnemonicParsing="false" opacity="0.0" prefHeight="50.0" prefWidth="52.0" text="Button" />
+      <ImageView fx:id="weatherMap" fitHeight="260.0" fitWidth="260.0" layoutX="717.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
       
    </children>
 </AnchorPane>

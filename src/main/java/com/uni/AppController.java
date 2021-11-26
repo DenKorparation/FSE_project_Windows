@@ -94,8 +94,7 @@ public class AppController {
     private ScrollBar hForecastScroll;
     @FXML
     private ImageView weatherMap;
-    @FXML
-    private Button min;
+
 
     private Node[] nodeHourly = new Node[48];
     private  ItemController[] nodesHourlyController = new ItemController[48];
@@ -193,29 +192,8 @@ public class AppController {
                 plus.setImage(new Image("plus.png"));
                 Map.setImage(database.getMap());
                 weatherMap.setImage(database.getWeatherMap());
-                tempBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        database.setMapLayer("temp_new");
-                        database.request();
 
-                    }
-                });
 
-                plus.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        Map.getOnZoom();
-                        Map.setOnZoom(zoomEvent -> database.zoomIncrement());
-                    }
-                });
-                min.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        Map.getOnZoom();
-                        Map.setOnZoom(zoomEvent -> database.zoomDecrement());
-                    }
-                });
 
             });
         });
@@ -259,6 +237,117 @@ public class AppController {
                 }
             }
         });
+        tempBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                database.setMapLayer("temp_new");
+                System.out.println("1");
+                Thread t = new Thread(() -> {
+
+                    database.reqMap();
+                    System.out.println("2");
+                    Platform.runLater(() -> {
+                        Map.setImage(database.getMap());
+                        weatherMap.setImage(database.getWeatherMap());
+                        System.out.println("3");
+
+                    });
+                });
+                t.start();
+            }
+        });
+        pressureBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                database.setMapLayer("pressure_new");
+
+                Thread t = new Thread(() -> {
+                    database.reqMap();
+                    Platform.runLater(() -> {
+                        Map.setImage(database.getMap());
+                        weatherMap.setImage(database.getWeatherMap());
+
+
+                    });
+                });
+                t.start();
+            }
+        });
+        cloudsBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                database.setMapLayer("clouds_new");
+                Thread t = new Thread(() -> {
+                    database.reqMap();
+                    Platform.runLater(() -> {
+                        Map.setImage(database.getMap());
+                        weatherMap.setImage(database.getWeatherMap());
+
+
+                    });
+                });
+                t.start();
+            }
+        });
+        windspeedBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                database.setMapLayer("wind_new");
+
+                Thread t = new Thread(() -> {
+                    database.reqMap();
+                    Platform.runLater(() -> {
+                        Map.setImage(database.getMap());
+                        weatherMap.setImage(database.getWeatherMap());
+
+
+                    });
+                });
+                t.start();
+            }
+        });
+        precipBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                database.setMapLayer("precipitation_new");
+
+                Thread t = new Thread(() -> {
+                    database.reqMap();
+                    Platform.runLater(() -> {
+                        Map.setImage(database.getMap());
+                        weatherMap.setImage(database.getWeatherMap());
+
+
+                    });
+                });
+                t.start();
+            }
+        });
+        plus.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                database.zoomIncrement();
+                Thread t = new Thread( () -> {
+                    database.reqMap();
+                    Platform.runLater(() -> {
+                        Map.setImage(database.getMap());
+                        weatherMap.setImage(database.getWeatherMap());
+                    });
+                });
+                t.start();
+            }
+        });
+        minus.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                database.zoomDecrement();
+                database.reqMap();
+                Map.setImage(database.getMap());
+                weatherMap.setImage(database.getWeatherMap());
+
+            }
+        });
+
     }
 
     public void postInit(){

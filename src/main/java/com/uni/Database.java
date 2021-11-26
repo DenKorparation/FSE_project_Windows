@@ -35,7 +35,7 @@ public class Database {
 
     public Database(){
         zoom = 9;
-        mapLayer = "temp_new";
+        mapLayer = "pressure_new";
         isCorrectData = false;
         partOfDay = "day";
         nameOfCity = "";
