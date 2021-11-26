@@ -96,6 +96,7 @@ public class Database {
                     curWeatherData.setDescription(obj.getJSONArray("weather").getJSONObject(0).getString("description"));
                     curWeatherData.setIdIcon(obj.getJSONArray("weather").getJSONObject(0).getString("icon"));
 
+                    codeOfCountry = obj.getJSONObject("sys").getString("country");
                     if(curWeatherData.getIdIcon().charAt(curWeatherData.getIdIcon().length() - 1) == 'd')
                         partOfDay = "day";
                     else
@@ -257,6 +258,7 @@ public class Database {
         if(zoom < 20)
             zoom++;
     };
+
     public void zoomDecrement(){
         if(zoom > 0)
             zoom--;
