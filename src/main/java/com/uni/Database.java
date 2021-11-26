@@ -68,13 +68,13 @@ public class Database {
                 "&size=256,256@2x&zoom=" + zoom);*/ //it is for correct view
 
         map = new Image("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEYS + "&center=" +
-                Double.toString(cityLatitude) + "," + Double.toString(cityLongitude) +
+                (-(yCoord + 0.5) * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString((xCoord + 0.5) * 360.d / Math.pow(2, zoom) - 180.d) +
                 "&size=256,256@2x&zoom=" + zoom);
 
         System.out.println("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEYS);
 
         System.out.println("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEYS + "&center=" +
-                Double.toString(cityLatitude) + "," + Double.toString(cityLongitude) +
+                (-(yCoord + 0.5) * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString((xCoord + 0.5) * 360.d / Math.pow(2, zoom) - 180.d) +
                 "&size=256,256@2x&zoom=" + zoom);
     }
 
