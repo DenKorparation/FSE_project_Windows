@@ -22,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 public class AppController {
@@ -34,6 +35,8 @@ public class AppController {
     private Button EnterButton;
     @FXML
     private TextField EnterCity;
+    @FXML
+    private Label lblForecastfor7days;
     @FXML
     private Label Temp;
     @FXML
@@ -81,6 +84,8 @@ public class AppController {
     @FXML
     private Button cloudsBut;
     @FXML
+    private Line line;
+    @FXML
     private Button precipBut;
     @FXML
     private Button pressureBut;
@@ -94,6 +99,12 @@ public class AppController {
     private ScrollBar hForecastScroll;
     @FXML
     private ImageView weatherMap;
+    @FXML
+    private ImageView legend;
+    @FXML
+    private Label lblmaps;
+    @FXML
+    private Label lblForecastforday;
 
 
     private Node[] nodeHourly = new Node[48];
@@ -110,13 +121,30 @@ public class AppController {
 
             Platform.runLater(() -> {
                 if(database.isCorrectData()){
-                    lbl.setText("Город " + EnterCity.getText());
+                    line.setVisible(true);
+                    lblForecastforday.setVisible(true);
+                    lblForecastfor7days.setVisible(true);
+                    hForecastScroll.setVisible(true);
+                    tempBut.setVisible(true);
+                    cloudsBut.setVisible(true);
+                    precipBut.setVisible(true);
+                    pressureBut.setVisible(true);
+                    windspeedBut.setVisible(true);
+                    Map.setVisible(true);
+                    weatherMap.setVisible(true);
+                    DailyWeatherList.setVisible(true);
+                    hourlyWeatherList.setVisible(true);
+                    minus.setVisible(true);
+                    plus.setVisible(true);
+                    lblmaps.setVisible(true);
+
+                    lbl.setText("Город " + database.getNameOfCity() + ", " + database.getCodeOfCountry());
                     String temp = (database.getCurWeatherData().getTemp()) +  "°";
                     Temp.setText(temp);
                     feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
                     windSpeed.setText((database.getCurWeatherData().getWindSpeed()) + " м/c");
                     humidity.setText( (database.getCurWeatherData().getHumidity()) + "%");
-                    pressure.setText((database.getCurWeatherData().getPressure()) + " gPa");
+                    pressure.setText((database.getCurWeatherData().getPressure()) + " hPa");
 
                     SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM HH:mm z"); // какой формат нужен, выбераем
                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
@@ -132,7 +160,7 @@ public class AppController {
                     mainIcon.getImage();
                     curCond = database.getCur_Condition();
                     partOfDay = database.getPartOfDay();
-                    condition.setText(database.getCur_Condition());
+                    condition.setText(database.getCurWeatherData().getDescription());
 
                     if ((Objects.equals(curCond, "Clear"))  & (Objects.equals(partOfDay, "night"))) {
                         mainIm.setImage(new Image("night.jpg"));
@@ -192,9 +220,6 @@ public class AppController {
                 plus.setImage(new Image("plus.png"));
                 Map.setImage(database.getMap());
                 weatherMap.setImage(database.getWeatherMap());
-
-
-
             });
         });
         t.start();
@@ -203,6 +228,23 @@ public class AppController {
 
     @FXML
     void initialize() {
+        line.setVisible(false);
+        lblForecastforday.setVisible(false);
+        hForecastScroll.setVisible(false);
+        tempBut.setVisible(false);
+        cloudsBut.setVisible(false);
+        precipBut.setVisible(false);
+        pressureBut.setVisible(false);
+        windspeedBut.setVisible(false);
+        Map.setVisible(false);
+        lblForecastfor7days.setVisible(false);
+        weatherMap.setVisible(false);
+        DailyWeatherList.setVisible(false);
+        hourlyWeatherList.setVisible(false);
+        minus.setVisible(false);
+        plus.setVisible(false);
+        lblmaps.setVisible(false);
+
         for (int i=0; i<48; i++) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/item.fxml"));
@@ -241,15 +283,13 @@ public class AppController {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 database.setMapLayer("temp_new");
-                System.out.println("1");
                 Thread t = new Thread(() -> {
 
                     database.reqMap();
-                    System.out.println("2");
                     Platform.runLater(() -> {
                         Map.setImage(database.getMap());
                         weatherMap.setImage(database.getWeatherMap());
-                        System.out.println("3");
+                        legend.setImage(new Image("temp_new.png"));
 
                     });
                 });
@@ -266,7 +306,7 @@ public class AppController {
                     Platform.runLater(() -> {
                         Map.setImage(database.getMap());
                         weatherMap.setImage(database.getWeatherMap());
-
+                        legend.setImage(new Image("pressure_new.png"));
 
                     });
                 });
@@ -282,7 +322,7 @@ public class AppController {
                     Platform.runLater(() -> {
                         Map.setImage(database.getMap());
                         weatherMap.setImage(database.getWeatherMap());
-
+                        legend.setImage(new Image("clouds_new.png"));
 
                     });
                 });
@@ -299,7 +339,7 @@ public class AppController {
                     Platform.runLater(() -> {
                         Map.setImage(database.getMap());
                         weatherMap.setImage(database.getWeatherMap());
-
+                        legend.setImage(new Image("wind_new.png"));
 
                     });
                 });
@@ -316,7 +356,7 @@ public class AppController {
                     Platform.runLater(() -> {
                         Map.setImage(database.getMap());
                         weatherMap.setImage(database.getWeatherMap());
-
+                        legend.setImage(new Image("precipitation_new.png"));
 
                     });
                 });

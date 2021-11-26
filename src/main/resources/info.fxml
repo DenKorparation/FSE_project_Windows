@@ -4,19 +4,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="204.0" prefWidth="186.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.InfoClass">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.78" prefHeight="204.0" prefWidth="186.0" style="-fx-background-color: #1d3d4e;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.InfoClass">
    <children>
-      <Label fx:id="hwindspeed" layoutX="5.0" layoutY="14.0" prefHeight="40.0" prefWidth="171.0" text="Скорость ветра">
+      <Label fx:id="hwindspeed" layoutX="2.0" layoutY="14.0" prefHeight="40.0" prefWidth="186.0" text="Скорость ветра" textFill="#fcfcfc">
          <font>
-            <Font name="Malgun Gothic" size="14.0" />
+            <Font name="Malgun Gothic" size="15.0" />
          </font></Label>
-      <Label fx:id="hpressure" layoutX="7.0" layoutY="74.0" prefHeight="40.0" prefWidth="171.0" text="Давление">
+      <Label fx:id="hpressure" layoutX="4.0" layoutY="74.0" prefHeight="40.0" prefWidth="178.0" text="Давление" textFill="#fffbfb">
          <font>
-            <Font name="Malgun Gothic" size="14.0" />
+            <Font name="Malgun Gothic" size="15.0" />
          </font></Label>
-      <Label fx:id="hHumidity" layoutX="7.0" layoutY="132.0" prefHeight="40.0" prefWidth="171.0" text="Влажность">
+      <Label fx:id="hHumidity" layoutX="3.0" layoutY="132.0" prefHeight="40.0" prefWidth="171.0" text="Влажность" textFill="#f2eeee">
          <font>
-            <Font name="Malgun Gothic" size="14.0" />
+            <Font name="Malgun Gothic" size="15.0" />
          </font></Label>
    </children>
 </AnchorPane>

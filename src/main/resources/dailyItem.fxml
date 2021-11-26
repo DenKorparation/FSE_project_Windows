@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxWidth="-Infinity" minWidth="-Infinity" opacity="0.8" prefHeight="183.0" prefWidth="135.0" style="-fx-background-color: #1d3d4e; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.dailyItemController">
+<AnchorPane maxWidth="-Infinity" minWidth="-Infinity" opacity="0.8" prefHeight="194.0" prefWidth="135.0" style="-fx-background-color: #1d3d4e; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uni.dailyItemController">
    <children>
       <Label fx:id="time" alignment="CENTER" layoutX="2.0" prefHeight="17.0" prefWidth="128.0" text="Время" textAlignment="CENTER" textFill="#fcfafa">
          <font>
             <Font name="Malgun Gothic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="temp" layoutX="45.0" layoutY="32.0" prefHeight="18.0" prefWidth="89.0" text="Температура" textFill="#fcfafa">
+      <Label fx:id="temp" layoutX="34.0" layoutY="32.0" prefHeight="18.0" prefWidth="89.0" text="Температура" textFill="#fcfafa">
          <font>
             <Font name="Malgun Gothic" size="13.0" />
          </font>
@@ -23,7 +23,7 @@
             <Font name="Malgun Gothic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="windspeed" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="153.0" prefHeight="36.0" prefWidth="118.0" text="Скорость ветра" textAlignment="CENTER" textFill="#fcfafa" wrapText="true">
+      <Label fx:id="windspeed" layoutX="48.0" layoutY="165.0" prefHeight="28.0" prefWidth="85.0" text="Скорость ветра" textAlignment="CENTER" textFill="#fcfafa">
          <font>
             <Font name="Malgun Gothic" size="13.0" />
          </font>
@@ -34,12 +34,13 @@
             <Font name="Malgun Gothic" size="13.0" />
          </font>
       </Label>
-      <ImageView fx:id="TempIm" fitHeight="22.0" fitWidth="22.0" layoutX="22.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="51.0" layoutY="16.0" prefHeight="17.0" prefWidth="71.0" text="День / ночь" textAlignment="CENTER" textFill="#fcf8f8">
+      <ImageView fx:id="TempIm" fitHeight="22.0" fitWidth="22.0" layoutX="12.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="34.0" layoutY="16.0" prefHeight="17.0" prefWidth="71.0" text="День / ночь" textAlignment="CENTER" textFill="#fcf8f8">
          <font>
             <Font name="Malgun Gothic" size="12.0" />
          </font>
       </Label>
+      <ImageView fx:id="wind_icon" fitHeight="26.0" fitWidth="30.0" layoutX="19.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true" />
    </children>
    <opaqueInsets>
       <Insets />
