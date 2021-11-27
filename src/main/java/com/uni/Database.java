@@ -35,7 +35,7 @@ public class Database {
 
     public Database(){
         zoom = 9;
-        mapLayer = "temp_new";
+        mapLayer = "pressure_new";
         isCorrectData = false;
         partOfDay = "day";
         nameOfCity = "";
@@ -58,7 +58,7 @@ public class Database {
         }
     }
 
-    private void reqMap() {
+    public void reqMap() {
         int xCoord, yCoord;
         xCoord = (int) ((cityLongitude + 180.d) / 360.d * Math.pow(2, zoom));
         yCoord = (int) (-(cityLatitude - 90.d) / 180.d * Math.pow(2, zoom));

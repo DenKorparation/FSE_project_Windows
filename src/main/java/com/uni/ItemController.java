@@ -52,28 +52,12 @@ public class ItemController implements Initializable {
         System.out.println(database.getHourlyForecast()[Index].getIdIcon() + ".png");
         icon.setImage(new Image(database.getHourlyForecast()[Index].getIdIcon() + ".png"));
         feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getHourlyForecast()[Index].getFeelsLikeTemp())) + "°" );
-        SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
-       /* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*/
+        SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm ");
+        /*sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"))*/;
         time.setText((sdf.format(database.getHourlyForecast()[Index].getTime())));
         curCond.setText(database.getHourlyForecast()[Index].getDescription());
     }
 
-    /*public void updateDaily(int Index){
-    this.Index = Index;
-        temp.setText("Температура " + String.valueOf(database.getDailyForecast()[Index].getTemp()) + "°");
-        System.out.println(database.getDailyForecast()[Index].getIdIcon() + ".png");
-        icon.setImage(new Image(database.getDailyForecast()[Index].getIdIcon() + ".png"));
-        feelsliketemp.setText("Ощущается как " + (String.valueOf(database.getDailyForecast()[Index].getFeelsLikeTemp())) + "°" );
-        SimpleDateFormat sdf = new SimpleDateFormat("E. dd.MM HH:mm z");
-        *//* sdf.setTimeZone(TimeZone.getTimeZone("GMT+3"));*//*
-        time.setText((sdf.format(database.getDailyForecast()[Index].getTime())));
-        curCond.setText(database.getDailyForecast()[Index].getCondition());
-    }*/
-
-  /*  public void FillColorD(){
-        //pane.setBackground(Color.BLUEVIOLET);
-        pane.setStyle("-fx-background-color: #1d3d4e");
-    }*/
 
     @FXML
     void ToMoreInfo(ActionEvent event) throws IOException {
@@ -94,7 +78,6 @@ public class ItemController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         temp.setText(String.valueOf(0.0)+ "°");
-       /* wind.setText(String.valueOf(0.0));*/
         icon.setImage(new Image("01d.png"));
     }
 }
