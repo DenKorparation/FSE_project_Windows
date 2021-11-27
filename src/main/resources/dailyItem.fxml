@@ -13,7 +13,7 @@
             <Font name="Malgun Gothic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="temp" layoutX="34.0" layoutY="32.0" prefHeight="18.0" prefWidth="89.0" text="Температура" textFill="#fcfafa">
+      <Label fx:id="temp" layoutX="34.0" layoutY="32.0" prefHeight="18.0" prefWidth="100.0" text="Температура" textFill="#fcfafa">
          <font>
             <Font name="Malgun Gothic" size="13.0" />
          </font>

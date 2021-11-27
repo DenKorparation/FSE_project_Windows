@@ -9,12 +9,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.FileInputStream;
 import java.io.IOException;
+
+/**
+ * App class launches the main window
+ * @ Sasha
+ * @ version 1.1
+ */
 
 public class App extends Application {
     AppController mainSceneController = new AppController();
+
+    /**
+     * method which loads a primary stage
+     * @param primaryStage sets a primaryStage
+     * @throws IOException if can't get the file
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/App.fxml"));
@@ -28,7 +38,10 @@ public class App extends Application {
         mainSceneController.postInit();
     }
 
-
+    /**
+     * method launches the program
+     * @param args argument of launch
+     */
 
     public static void main(String[] args) {
         launch();
