@@ -25,93 +25,215 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * AppController class that implements methods connected with interface
+ * @author Sasha
+ * @version 1.0
+ */
 public class AppController {
+    /**
+     * database stores information about forecast and location
+     */
     public static Database database = new Database();
-    @FXML
-    private ResourceBundle resources;
-    @FXML
-    private URL location;
+    /**
+     * EnterButton Button starts the program
+     */
     @FXML
     private Button EnterButton;
+    /**
+     * EnterCity TextField saves the entered city value
+     */
     @FXML
     private TextField EnterCity;
+    /**
+     * lblForecastfor7days Label which contains "Forecast for 7 days" text
+     */
     @FXML
     private Label lblForecastfor7days;
+    /**
+     * Temp Label for temperature's output
+     */
     @FXML
     private Label Temp;
+    /**
+     * feelslikatemp Label for feels like temperature's output
+     */
     @FXML
     private Label feelslikeTemp;
+    /**
+     * humidity Label for humidity's output
+     */
     @FXML
     private Label humidity;
+    /**
+     * lbl Label
+     */
     @FXML
     private Label lbl;
+    /**
+     * curTime Label for current time output
+     */
     @FXML
     private Label curTime;
+    /**
+     * pressure Label for pressure's output
+     */
     @FXML
     private Label pressure;
-    @FXML
-    private Label PartOfDay;
+    /**
+     * mainIm ImageView for main image's output
+     */
     @FXML
     private ImageView mainIm;
+    /**
+     * condition Label for main condition's output
+     */
     @FXML
     private Label condition;
+    /**
+     * windspeed Label for speed's of wind output
+     */
     @FXML
     private Label windSpeed;
+    /**
+     * curCond String which gets current condition value from database
+     */
     @FXML
     private String curCond;
+    /**
+     * partOfDay String which gets partOfDay value from database
+     */
     @FXML
     private String partOfDay;
+
     @FXML
     private Label result_info;
+    /**
+     * humidityIm ImageView for humidity image output
+     */
     @FXML
     private ImageView humidityIm;
+    /**
+     * windIm ImageView for wind image output
+     */
     @FXML
     private ImageView windIm;
+    /**
+     * pressureIm ImageView for pressure image output
+     */
     @FXML
     private ImageView pressureIm;
+    /**
+     * minus ImageView for minus image output
+     */
     @FXML
     private ImageView minus;
+    /**
+     * plus ImageView for plus image output
+     */
     @FXML
     private ImageView plus;
+    /**
+     * mainIcon ImageView for main icon output
+     */
     @FXML
     private ImageView mainIcon;
+    /**
+     * magnifer ImageView for magnifer image output
+     */
     @FXML
     private ImageView magnifier;
+    /**
+     * DailuWeatherList AnchorPane locates blocks of daily weather
+     */
     @FXML
     private AnchorPane DailyWeatherList;
+    /**
+     * Map ImageView for Map image output
+     */
     @FXML
     private ImageView Map;
+    /**
+     * cloudsBut Button which on a click stars handle method
+     */
     @FXML
     private Button cloudsBut;
+    /**
+     * line Line wich outputs the line
+     */
     @FXML
     private Line line;
+    /**
+     * precipBut Button which on a click stars handle method
+     */
     @FXML
     private Button precipBut;
+    /**
+     * pressureBut Button which on a click stars handle method
+     */
     @FXML
     private Button pressureBut;
+    /**
+     * tempBut Button which on a click stars handle method
+     */
     @FXML
     private Button tempBut;
+    /**
+     * windspeed Button which on a click stars handle method
+     */
     @FXML
     private Button windspeedBut;
+    /**
+     * hourlyWeatherList AnchorPane contains blocks with information
+     */
     @FXML
     private AnchorPane hourlyWeatherList;
+    /**
+     * hForecastScroll which contains scroll
+     */
     @FXML
     private ScrollBar hForecastScroll;
+    /**
+     * weatherMap ImageView for weather map output
+     */
     @FXML
     private ImageView weatherMap;
+    /**
+     * legend ImageView for legend of maps output
+     */
     @FXML
     private ImageView legend;
+    /**
+     * lblmaps Label which contains "map of weather" text
+     */
     @FXML
     private Label lblmaps;
+    /**
+     * lblForecastforday Label which contains "Forecast for day" text
+     */
     @FXML
     private Label lblForecastforday;
 
-
+    /**
+     * nodeHourly stores list of blocks about hourly forecast
+     */
     private Node[] nodeHourly = new Node[48];
+    /**
+     * nodesHourluController stores controller for capability to change information in blocks
+     */
     private  ItemController[] nodesHourlyController = new ItemController[48];
+    /**
+     * nodeDaily stores list of blocks about daily forecast
+     */
     private Node[] nodeDaily = new Node[7];
+    /**
+     * nodesDailyController stores controller for capability to change information in blocks
+     */
     private  dailyItemController[] nodesDailyController = new dailyItemController[7];
 
+    /**
+     * OnClickMethod when enter button is clicked starts the main code
+     */
     @FXML
     void OnClickMethod() {
         database.setNameOfCity(EnterCity.getText());
@@ -220,12 +342,16 @@ public class AppController {
                 plus.setImage(new Image("plus.png"));
                 Map.setImage(database.getMap());
                 weatherMap.setImage(database.getWeatherMap());
+                legend.setImage(new Image("pressure_new.png"));
             });
         });
         t.start();
 
     }
 
+    /**
+     * method initialization of elements
+     */
     @FXML
     void initialize() {
         line.setVisible(false);
@@ -271,6 +397,9 @@ public class AppController {
         hForecastScroll.setMax(1);
         hForecastScroll.setValue(0);
         hForecastScroll.valueProperty().addListener(new ChangeListener<Number>() {
+            /**
+             * method  that updates information during scroll
+             */
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 for (int i = 0; i < nodeHourly.length; i++) {
@@ -280,6 +409,10 @@ public class AppController {
             }
         });
         tempBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            /**
+             * method that on a click sets a temperature map
+             * @param mouseEvent event action that starts the action
+             */
             @Override
             public void handle(MouseEvent mouseEvent) {
                 database.setMapLayer("temp_new");
@@ -296,6 +429,10 @@ public class AppController {
                 t.start();
             }
         });
+        /**
+         * method that on a click sets a pressure map
+         * @param mouseEvent event action that starts the action
+         */
         pressureBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -313,7 +450,12 @@ public class AppController {
                 t.start();
             }
         });
+
         cloudsBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            /**
+             * method that on a click sets a clouds map
+             * @param mouseEvent event action that starts the action
+             */
             @Override
             public void handle(MouseEvent mouseEvent) {
                 database.setMapLayer("clouds_new");
@@ -329,7 +471,12 @@ public class AppController {
                 t.start();
             }
         });
+
         windspeedBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            /**
+             * method that on a click sets a wind speed map
+             * @param mouseEvent event action that starts the action
+             */
             @Override
             public void handle(MouseEvent mouseEvent) {
                 database.setMapLayer("wind_new");
@@ -347,6 +494,10 @@ public class AppController {
             }
         });
         precipBut.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            /**
+             * method that on a click sets a precipitation map
+             * @param mouseEvent event action that starts the action
+             */
             @Override
             public void handle(MouseEvent mouseEvent) {
                 database.setMapLayer("precipitation_new");
@@ -364,6 +515,10 @@ public class AppController {
             }
         });
         plus.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            /**
+             * method that on a click zooms a map
+             * @param mouseEvent event action that starts the action
+             */
             @Override
             public void handle(MouseEvent mouseEvent) {
                 database.zoomIncrement();
@@ -378,6 +533,10 @@ public class AppController {
             }
         });
         minus.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            /**
+             * method that on a click zooms a map
+             * @param mouseEvent event action that starts the action
+             */
             @Override
             public void handle(MouseEvent mouseEvent) {
                 database.zoomDecrement();
@@ -390,6 +549,9 @@ public class AppController {
 
     }
 
+    /**
+     * method that locates blocks of information on AnchorPane
+     */
     public void postInit(){
         for(int i = 0; i < nodeHourly.length; i++) {
             nodeHourly[i].setTranslateX(nodeHourly[i].getLayoutBounds().getWidth() * 1.2 * i);
