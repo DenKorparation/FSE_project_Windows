@@ -85,8 +85,8 @@ public class dailyItemController implements Initializable {
 
     /**
      * method that initializes elements of daily forecast
-     * @param url
-     * @param resourceBundle
+     * @param url url
+     * @param resourceBundle resourceBundle
      */
 
     @Override

@@ -1,38 +1,98 @@
 package com.uni;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * this class contains information about current weather and hourly(48 hours) and daily(7 days) forecast and some geo info about city
+ * @author Den
+ * @version 1.0
+ */
 public class Database {
+    /**
+     * numberOfHours store number of hours for hourly forecast
+     */
     private static final int numberOfHours = 48;
+    /**
+     * zoom store zoom of map
+     */
     private int zoom;
+    /**
+     * numberOfDays store number of days for daily forecast
+     */
     private static final int numberOfDays = 7;
-    private  static  final String API_KEYS = "c76548e17d6b42b99e631401cd0e0f75";
-    private static final String MAP_API_KEYS = "LOSBNUlvpwa89u2MXMh5EusanAKtrRXh";
+    /**
+     * API_KEY store API key of OpenWeatherMap.org
+     */
+    private  static  final String API_KEY = "c76548e17d6b42b99e631401cd0e0f75";
+    /**
+     * MAP_API_KEY store API key of www.mapquestapi.com
+     */
+    private static final String MAP_API_KEY = "LOSBNUlvpwa89u2MXMh5EusanAKtrRXh";
+    /**
+     * curWeatherData store information about current weather
+     */
     private DataOfWeather curWeatherData = new DataOfWeather();
+    /**
+     * hourlyForecast store information about hourly forecast(48 hours)
+     */
     private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
+    /**
+     * dailyForecast store information about daily forecast(7 days)
+     */
     private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
+    /**
+     * nameOfCity store name of selected city
+     */
     private String nameOfCity;
+    /**
+     * codeOfCountry store code of country of selected city
+     */
     private String codeOfCountry;
+    /**
+     * cur_Condition store current weather condition
+     */
     private String cur_Condition;
+    /**
+     * partOfDay store part of day at the moment
+     */
     private String partOfDay;
+    /**
+     * isCorrectData indicates whether the correct data has been received
+     */
     private boolean isCorrectData;
+    /**
+     * map store geo map of this city
+     */
     private Image map;
+    /**
+     * weatherMap store weather map of this city
+     */
     private Image weatherMap;
+    /**
+     * cityLongitude store Longitude of this city
+     */
     private double cityLongitude; //долгота
+    /**
+     * cityLatitude store Latitude of this city
+     */
     private double cityLatitude; //широта
+    /**
+     * mapLayer store type of layer of weather map
+     */
     private String mapLayer;
 
 
+    /**
+     * default constructor
+     */
     public Database(){
         zoom = 9;
         mapLayer = "pressure_new";
@@ -48,36 +108,46 @@ public class Database {
         }
     }
 
+    /**
+     * call all request
+     */
     public void request() {
 
-        reqCurWeather("https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&lang=ru&units=metric&appid=" + API_KEYS);
+        reqCurWeather("https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&lang=ru&units=metric&appid=" + API_KEY);
         if (isCorrectData) {
             reqMap();
-            reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&lang=ru&units=metric&appid=" + API_KEYS);
-            reqDailyForecast("https://api.openweathermap.org/data/2.5/forecast/daily?q=" + nameOfCity + "&cnt=7&lang=ru&units=metric&appid=" + API_KEYS);
+            reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&lang=ru&units=metric&appid=" + API_KEY);
+            reqDailyForecast("https://api.openweathermap.org/data/2.5/forecast/daily?q=" + nameOfCity + "&cnt=7&lang=ru&units=metric&appid=" + API_KEY);
         }
     }
 
+    /**
+     * receiving weather map and geo map (.png)
+     */
     public void reqMap() {
         int xCoord, yCoord;
         xCoord = (int) ((cityLongitude + 180.d) / 360.d * Math.pow(2, zoom));
         yCoord = (int) (-(cityLatitude - 90.d) / 180.d * Math.pow(2, zoom));
-        weatherMap = new Image("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEYS);
+        weatherMap = new Image("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEY);
         /*map = new Image("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEYS + "&center=" +
                 (-(yCoord + 0.5) * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString((xCoord + 0.5) * 360.d / Math.pow(2, zoom) - 180.d) +
                 "&size=256,256@2x&zoom=" + zoom);*/ //it is for correct view
 
-        map = new Image("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEYS + "&center=" +
+        map = new Image("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEY + "&center=" +
                 (-(yCoord + 0.5) * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString((xCoord + 0.5) * 360.d / Math.pow(2, zoom) - 180.d) +
                 "&size=256,256@2x&zoom=" + zoom);
 
-        System.out.println("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEYS);
+        System.out.println("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEY);
 
-        System.out.println("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEYS + "&center=" +
+        System.out.println("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEY + "&center=" +
                 (-(yCoord + 0.5) * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString((xCoord + 0.5) * 360.d / Math.pow(2, zoom) - 180.d) +
                 "&size=256,256@2x&zoom=" + zoom);
     }
 
+    /**
+     * receiving current weather data
+     * @param url url of call API of openWeatherMap for current weather data
+     */
     private void reqCurWeather(String url){
         System.out.println(url);
         try {
@@ -121,6 +191,10 @@ public class Database {
         }
     }
 
+    /**
+     * receiving hourly forecast
+     * @param url url of call API of openWeatherMap for hourly forecast
+     */
     private void reqHourlyForecast(String url){
         System.out.println(url);
         try{
@@ -152,6 +226,10 @@ public class Database {
         }
     }
 
+    /**
+     * receiving daily forecast
+     * @param url url of call API of openWeatherMap for daily forecast
+     */
     private void reqDailyForecast(String url){
         System.out.println(url);
         try{
@@ -184,6 +262,11 @@ public class Database {
         }
     }
 
+    /**
+     * getting content by url request
+     * @param urlAdress url adress for which we want to get content
+     * @return content as String(for this project JSON file)
+     */
     private static String getUrlContent(String urlAdress) {
         StringBuffer content = new StringBuffer();
         try{
@@ -202,68 +285,114 @@ public class Database {
         return content.toString();
     }
 
+    /**
+     * Function for getting the field value {@link Database#curWeatherData}
+     * @return returns information about current weather
+     */
     public DataOfWeather getCurWeatherData() {
         return curWeatherData;
     }
 
+    /**Function for getting the field value {@link Database#hourlyForecast}
+     * @return returns information about hourly weather forecast(48 hours)
+     */
     public DataOfWeather[] getHourlyForecast() {
         return hourlyForecast;
     }
 
+    /**Function for getting the field value {@link Database#dailyForecast}
+     * @return  returns information about daily weather forecast(7 days)
+     */
     public DataOfWeather[] getDailyForecast() {
         return dailyForecast;
     }
 
+    /**
+     * setter for nameOfCity field in {@link Database}
+     * @param nameOfCity to set name of selected city
+     */
     public void setNameOfCity(String nameOfCity) {
         this.nameOfCity = nameOfCity;
     }
 
+    /**
+     * Function for getting the field value {@link Database#nameOfCity}
+     * @return returns name of selected city
+     */
     public String getNameOfCity(){
         return nameOfCity;
     }
 
+    /**
+     * returns true if the correct data is received
+     * false in other cases
+     * @return value of {@link Database#isCorrectData}
+     */
     public boolean isCorrectData() {
         return isCorrectData;
     }
 
+    /**Function for getting the field value {@link Database#partOfDay}
+     * @return returns part of day as String
+     */
     public String getPartOfDay() {
         return partOfDay;
     }
 
+    /**
+     * Function for getting the field value {@link Database#cur_Condition}
+     * @return returns current weather condition as String
+     */
     public String getCur_Condition() {
         return cur_Condition;
     }
 
+    /**
+     * Function for getting the field value {@link Database#map}
+     * @return returns geo map as Image
+     */
     public Image getMap() {
         return map;
     }
 
-    public double getCityLongitude() {
-        return cityLongitude;
-    }
-
-    public double getCityLatitude() {
-        return cityLatitude;
-    }
-
+    /**
+     * Function for getting the field value {@link Database#weatherMap}
+     * @return returns weather map as Image
+     */
     public Image getWeatherMap() {
         return weatherMap;
     }
 
+    /**
+     * setter for mapLayer field in {@link Database}
+     * @param mapLayer to set current weather map layer
+     */
     public void setMapLayer(String mapLayer) {
         this.mapLayer = mapLayer;
     }
 
+    /**
+     * this method zooms in on the map
+     * but max value of {@link Database#zoom} = 20
+     */
     public void zoomIncrement(){
         if(zoom < 20)
             zoom++;
     };
 
+    /**
+     * this method zooms out on the map
+     * but min value of {@link Database#zoom} = 0
+     */
     public void zoomDecrement(){
         if(zoom > 0)
             zoom--;
     };
 
+    /**
+     * Function for getting the field value {@link Database#codeOfCountry}
+     * @return returns code of country in which the selected city is located
+     */
     public String getCodeOfCountry() {
         return codeOfCountry;
     }

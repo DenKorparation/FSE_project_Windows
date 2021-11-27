@@ -51,6 +51,9 @@ public class ItemController implements Initializable {
      */
     private int Index;
 
+    /**
+     * moreInfoController controller of More info window to change information in this window
+     */
     InfoClass moreInfoController;
 
     /**
@@ -91,8 +94,8 @@ public class ItemController implements Initializable {
 
     /**
      * method that initializes elements of hourly forecast
-     * @param url
-     * @param resourceBundle
+     * @param url url
+     * @param resourceBundle resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -106,6 +106,9 @@ public class AppController {
     @FXML
     private String partOfDay;
 
+    /**
+     * result_info ImageView for result info output
+     */
     @FXML
     private Label result_info;
     /**
@@ -265,7 +268,7 @@ public class AppController {
                     Temp.setText(temp);
                     feelslikeTemp.setText("Ощущается как " + (database.getCurWeatherData().getFeelsLikeTemp())  +  "°");
                     windSpeed.setText((database.getCurWeatherData().getWindSpeed()) + " м/c");
-                    humidity.setText( (database.getCurWeatherData().getHumidity()) + "%");
+                    humidity.setText((database.getCurWeatherData().getHumidity()) + "%");
                     pressure.setText((database.getCurWeatherData().getPressure()) + " hPa");
 
                     SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM HH:mm z"); // какой формат нужен, выбераем

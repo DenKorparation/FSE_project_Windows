@@ -13,11 +13,14 @@ import java.io.IOException;
 
 /**
  * App class launches the main window
- * @ Sasha
- * @ version 1.1
+ * @author Sasha
+ * @version 1.0
  */
 
 public class App extends Application {
+    /**
+     * controller of main scene to call {@link AppController#postInit()}
+     */
     AppController mainSceneController = new AppController();
 
     /**
