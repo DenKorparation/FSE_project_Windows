@@ -30,7 +30,7 @@
             <BoxBlur height="1.0" width="1.0" />
          </effect>
       </ImageView>
-      <Label fx:id="lbl" layoutX="33.0" layoutY="43.0" prefHeight="39.0" prefWidth="235.0" textFill="#ffffffd9">
+      <Label fx:id="lbl" layoutX="33.0" layoutY="43.0" prefHeight="39.0" prefWidth="454.0" textFill="#ffffffd9">
          <font>
             <Font name="Malgun Gothic Bold" size="18.0" />
          </font></Label>
@@ -55,7 +55,7 @@
          <font>
             <Font name="Malgun Gothic" size="18.0" />
          </font></Label>
-      <Label fx:id="curTime" layoutX="33.0" layoutY="70.0" prefHeight="25.0" prefWidth="369.0" textFill="#ffffffd9">
+      <Label fx:id="curTime" layoutX="33.0" layoutY="70.0" prefHeight="25.0" prefWidth="485.0" textFill="#ffffffd9">
          <font>
             <Font name="Malgun Gothic" size="14.0" />
          </font></Label>
