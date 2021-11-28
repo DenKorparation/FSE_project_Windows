@@ -243,6 +243,7 @@ public class AppController {
         result_info.setText("Ожидайте...");
         Thread t = new Thread(() -> {
             database.request();
+            database.reqMap();
 
             Platform.runLater(() -> {
                 if(database.isCorrectData()){
