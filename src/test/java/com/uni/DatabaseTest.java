@@ -74,6 +74,11 @@ public class DatabaseTest {
     }
 
     @Test
+    public void setMapLayer() throws Exception{
+        database.setMapLayer("temp_new");
+    }
+
+    @Test
     public void zoomIncrement() throws Exception{
         for(int i = 0; i < 13; i++){
             database.zoomIncrement();
